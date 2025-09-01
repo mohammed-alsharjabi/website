@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>إعلان خدمات تكنوفيزن — iPhone 14</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{ --brand:#217DFC; --accent:#3AE2C4; --white:#fff; --bg1:#0b1426; --bg2:#0a1020; }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:"Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Kufi Arabic", Arial, sans-serif; background:#000; color:#fff; display:grid; place-items:center; min-height:100svh}
+
+    /* إطار iPhone 14 (390×844) */
+    .frame{width:390px; height:844px; position:relative; overflow:hidden; border-radius:36px; background:radial-gradient(120% 90% at 80% -20%, rgba(58,226,196,.22), transparent 60%), linear-gradient(180deg, var(--bg1), var(--bg2)); border:1px solid rgba(255,255,255,.12); box-shadow:0 40px 120px rgba(33,125,252,.25), inset 0 0 0 1px rgba(58,226,196,.10)}
+    canvas{position:absolute; inset:0; width:100%; height:100%}
+
+    header{position:absolute; inset:0 0 auto 0; padding:18px; display:flex; align-items:center; justify-content:space-between; z-index:2}
+    .brand{display:flex; align-items:center; gap:.6rem}
+    .brand img{width:34px; height:34px; object-fit:contain; filter:drop-shadow(0 2px 8px rgba(58,226,196,.35))}
+    .brand .t{font-weight:800; font-size:14px}
+
+    main{position:absolute; inset:72px 16px 16px 16px; display:flex; flex-direction:column; gap:12px; z-index:2}
+
+    .badge{align-self:flex-start; background:rgba(58,226,196,.15); border:1px solid rgba(58,226,196,.45); color:#cffff2; padding:.28rem .6rem; border-radius:999px; font-size:12px}
+    h1{margin:0; font-size:26px; line-height:1.15; font-weight:800}
+    .lead{margin:0; color:#d8e8ff; opacity:.95; font-size:14px; line-height:1.7}
+
+    .cards{display:grid; gap:8px; margin-top:6px}
+    .card{display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:center; padding:10px 12px; border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.10)}
+    .ico{width:28px; height:28px; display:inline-grid; place-items:center; border-radius:8px; background:rgba(33,125,252,.25); border:1px solid rgba(33,125,252,.45); font-size:14px; font-weight:800}
+    .card b{display:block; font-size:14px}
+    .card span{color:#cfe2ff; font-size:12px}
+
+    .ctas{margin-top:8px; display:grid; grid-template-columns:1fr 1fr; gap:8px}
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:.9rem .8rem; border-radius:14px; border:1px solid rgba(255,255,255,.14); text-decoration:none; color:#fff; font-weight:800; font-size:14px}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),#81B0E2); box-shadow:0 12px 24px rgba(33,125,252,.35)}
+    .btn.ghost{background:rgba(255,255,255,.06)}
+
+    .footer-note{margin-top:8px; font-size:12px; color:#bcd1ff; text-align:center}
+
+    @media (max-width:420px){
+      .frame{transform:scale(calc((100svw - 16px)/390)); transform-origin:top center; height:844px}
+      body{min-height:calc(844px * ((100svw - 16px)/390) + 24px)}
+    }
+  </style>
+</head>
+<body>
+  <div class="frame" id="frame">
+    <canvas id="bg"></canvas>
+
+    <header>
+      <div class="brand">
+        <img src="site_logo.webp" alt="شعار تكنوفيزن" onerror="this.style.display='none'" />
+        <div class="t">تكنوفيزن — Technovizen</div>
+      </div>
+      <span class="badge">خدماتنا</span>
+    </header>
+
+    <main>
+      <span class="badge">حلول رقمية متكاملة</span>
+      <h1>نصمّم ونطوّر… ونطلق مشروعك بسرعة</h1>
+      <p class="lead">اختر خدمتكم المناسبة، ونحن نتولى التحليل، التصميم، البرمجة، الإطلاق، والدعم.</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="ico">🌐</div>
+          <div>
+            <b>مواقع احترافية</b>
+            <span>واجهات حديثة، سرعة عالية، وتهيئة SEO للظهور في النتائج الأولى.</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ico">📱</div>
+          <div>
+            <b>تطبيقات موبايل (Flutter)</b>
+            <span>iOS وAndroid من كود واحد، تجربة سلسة وتكاملات دفع/خرائط.</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ico">🛒</div>
+          <div>
+            <b>متاجر إلكترونية</b>
+            <span>سلة/شوبيفاي/ووردبريس، صلاحيات، تقارير، ووسائل دفع محلية.</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ico">🚀</div>
+          <div>
+            <b>تحسين الأداء وSEO</b>
+            <span>سرعة، صور مضغوطة، بنية عناوين سليمة، وبيانات منظّمة.</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ico">🔧</div>
+          <div>
+            <b>صيانة ودعم</b>
+            <span>حل مشكلات فورية، تحديثات أمنية، وتطوير تدريجي حسب الحاجة.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn primary" href="https://wa.me/966568767724?text=أحتاج%20خدمة%20من%20تكنوفيزن" target="_blank" rel="noopener">تواصل واتساب</a>
+        <a class="btn ghost" href="tel:+966568767724">اتصل الآن</a>
+      </div>
+
+      <div class="footer-note">technovizen.com • الرياض — الحمراء • +966 56 876 7724</div>
+    </main>
+  </div>
+
+  <script>
+    // خلفية جسيمات خفيفة
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    const frame = document.getElementById('frame');
+
+    function fit(){ canvas.width = frame.clientWidth; canvas.height = frame.clientHeight; }
+    window.addEventListener('resize', fit, {passive:true});
+    fit();
+
+    const P = 110;
+    const dots = Array.from({length: P}, () => ({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.6 + .3,
+      dx: (Math.random()-.5)*0.25,
+      dy: (Math.random()-.5)*0.25
+    }));
+
+    function loop(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      const g = ctx.createLinearGradient(0,0,0,canvas.height);
+      g.addColorStop(0,'rgba(33,125,252,0.10)');
+      g.addColorStop(1,'rgba(58,226,196,0.06)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      for(const d of dots){
+        d.x += d.dx; d.y += d.dy;
+        if(d.x<0) d.x=canvas.width; if(d.x>canvas.width) d.x=0; if(d.y<0) d.y=canvas.height; if(d.y>canvas.height) d.y=0;
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(235, 250, 255, .9)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.r*2.2, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(58,226,196,.08)'; ctx.fill();
+      }
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!-- ==================== AI HERO (Technovizen) ==================== -->
+<section id="ai-hero" class="ai-hero">
+  <!-- طبقة 1: فضاء/جسيمات -->
+  <canvas id="aiField" aria-hidden="true"></canvas>
+  <!-- أفق كوكبي ناعم -->
+  <div class="ai-horizon" aria-hidden="true"></div>
+
+  <!-- طبقة 2+3: SVG للمشهد العصبي + الأجهزة + تيارات البيانات -->
+  <svg id="aiScene" viewBox="0 0 1400 640" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="g" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="gradBA" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0"  stop-color="var(--brand,#217DFC)"/>
+        <stop offset="1"  stop-color="var(--accent,#3AE2C4)"/>
+      </linearGradient>
+    </defs>
+
+    <!-- شبكة عصبية حلقية (يملؤها JS) -->
+    <g id="netWrap" transform="translate(700,330)">
+      <g id="netRot" filter="url(#g)"></g>
+    </g>
+
+    <!-- وكلاء/أجهزة مجردّة -->
+    <g id="agents" filter="url(#g)">
+      <!-- سحابة (وكيل سحابي) -->
+      <g transform="translate(240,300)">
+        <path d="M-50,10 q20-40 60-14 q12-34 56-20 q36,8 36,46 q-2,28 -34,36 h-98 q-28-6 -32-30 q0-12 12-18z"
+              fill="rgba(255,255,255,.08)" stroke="url(#gradBA)" stroke-width="2"/>
+      </g>
+      <!-- هاتف ذكي -->
+      <g transform="translate(1160,340)">
+        <rect x="-26" y="-56" width="52" height="112" rx="10" ry="10"
+              fill="rgba(255,255,255,.06)" stroke="url(#gradBA)" stroke-width="2"/>
+        <circle cx="0" cy="-44" r="3.2" fill="var(--accent,#3AE2C4)"/>
+      </g>
+      <!-- حاسوب محمول -->
+      <g transform="translate(1080,210)">
+        <rect x="-60" y="-36" width="120" height="72" rx="8" fill="rgba(255,255,255,.06)" stroke="url(#gradBA)" stroke-width="2"/>
+        <rect x="-72" y="36" width="144" height="14" rx="3" fill="rgba(255,255,255,.06)" stroke="url(#gradBA)" stroke-width="2"/>
+      </g>
+      <!-- عقدة بيانات كبيرة (نواة AI) -->
+      <g transform="translate(320,160)">
+        <circle r="26" fill="rgba(255,255,255,.08)" stroke="url(#gradBA)" stroke-width="2"/>
+        <circle r="6"  fill="var(--accent,#3AE2C4)"/>
+      </g>
+    </g>
+
+    <!-- مسارات بيانات واسعة (تكملها JS بنقاط متحركة) -->
+    <g id="beams" stroke="url(#gradBA)" stroke-width="2" stroke-opacity=".35" fill="none">
+      <path id="b1" d="M280,310 C520,230 880,240 1120,300"/>
+      <path id="b2" d="M280,340 C560,300 840,300 1120,340" stroke-opacity=".28"/>
+      <path id="b3" d="M280,370 C520,420 880,420 1120,372" stroke-opacity=".24"/>
+    </g>
+    <g id="packets" filter="url(#g)"></g>
+
+    <!-- رموز/معادلات عائمة خفيفة -->
+    <g id="glyphs" fill="#cfe6ff" opacity=".65">
+      <text x="210" y="120" style="font:12px system-ui,Arial">softmax(z)</text>
+      <text x="950" y="90"  style="font:12px system-ui,Arial">σ(x)=1/(1+e^{-x})</text>
+      <text x="640" y="70"  style="font:12px system-ui,Arial">y = W·x + b</text>
+    </g>
+  </svg>
+
+  <!-- واجهة العناوين/الأزرار -->
+  <div class="ai-ui">
+    <div class="ai-badge"><span class="dot"></span> هوية ذكاء اصطناعي — تطبيقات ومواقع</div>
+    <h1>نبني واجهات ذكيّة وأنظمة تتعلّم</h1>
+    <p class="lead">تجربة افتتاحية مُبهرة: شبكة عصبية كونيّة وتيّارات بيانات تصل بين السحابة، الهواتف، ولوحات التحكم—بألوان Technovizen.</p>
+    <div class="cta">
+      <a class="btn" href="#projects">استعرض مشاريعنا</a>
+      <a class="btn ghost" href="#services">خدماتنا</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ——— تنسيقات السيكشن فقط ——— */
+  .ai-hero{position:relative; min-height:100vh; display:grid; place-items:center;
+    padding:clamp(16px,4vw,40px); isolation:isolate; overflow:hidden;
+    background: radial-gradient(1200px 700px at 70% -10%, #0a1b33 0%, #081426 45%, #040811 100%)}
+  .ai-hero #aiField{position:absolute; inset:0; z-index:0}
+  .ai-hero .ai-horizon{position:absolute; inset:0; z-index:1; pointer-events:none}
+  .ai-hero .ai-horizon::after{
+    content:""; position:absolute; left:-15%; right:-15%; bottom:-38%; height:90vh; border-radius:50%;
+    filter:blur(28px);
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--brand,#217DFC) 60%, transparent),
+                                           color-mix(in oklab, var(--accent,#3AE2C4) 40%, transparent), transparent 65%);
+    box-shadow: 0 -100px 200px color-mix(in oklab, var(--brand,#217DFC) 25%, transparent) inset;
+  }
+  .ai-hero #aiScene{position:absolute; inset:0; z-index:2; width:100%; height:auto}
+  .ai-hero .ai-ui{position:relative; z-index:3; display:grid; gap:14px; text-align:center; max-width:min(960px,92vw)}
+  .ai-hero .ai-badge{display:inline-flex; align-items:center; gap:10px; margin-inline:auto;
+    padding:8px 12px; border-radius:999px; font-weight:700; font-size:12px; letter-spacing:.2px;
+    color:#e9f4ff; border:1px solid rgba(255,255,255,.12);
+    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)); backdrop-filter: blur(8px)}
+  .ai-hero .ai-badge .dot{width:8px;height:8px;border-radius:50%; background:var(--accent,#3AE2C4);
+    box-shadow:0 0 0 6px color-mix(in oklab, var(--accent,#3AE2C4) 26%, transparent)}
+  .ai-hero h1{margin:0; font-size:clamp(32px,6vw,68px); line-height:1.08; font-weight:900;
+    background:linear-gradient(180deg, #e9f4ff 0%, #b8d7ff 55%, #6ecde0 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 10px 30px color-mix(in oklab, var(--brand,#217DFC) 22%, transparent))}
+  .ai-hero .lead{margin:0 auto; max-width:62ch; color:#9DB8D4; font-size:clamp(14px,2.1vw,18px); line-height:1.9}
+  .ai-hero .cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+  .ai-hero .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px;
+    border:1px solid rgba(255,255,255,.14);
+    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    color:#e9f4ff; font-weight:800; letter-spacing:.2px; text-decoration:none; transition: transform .2s ease, border-color .2s ease}
+  .ai-hero .btn:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.28) }
+  .ai-hero .btn.ghost{ background:transparent }
+  /* احترام تفضيل تقليل الحركة */
+  @media (prefers-reduced-motion: reduce){
+    .ai-hero #aiField{display:none}
+    .ai-hero #aiScene{opacity:.9}
+  }
+</style>
+
+<script>
+/* =============== Canvas Layer: Neural Aurora + Particles =============== */
+(()=>{
+  const c = document.getElementById('aiField');
+  if(!c) return; const ctx = c.getContext('2d');
+  let W=0,H=0, DPR = Math.min(devicePixelRatio||1, 1.6);
+  let t = 0, parts = [];
+
+  function resize(){
+    W = c.width  = Math.floor(innerWidth  * DPR);
+    H = c.height = Math.floor(innerHeight * DPR);
+    c.style.width  = innerWidth  + 'px';
+    c.style.height = innerHeight + 'px';
+    const count = Math.min(900, Math.floor(W*H/6000));
+    parts = Array.from({length:count},()=>({
+      x: Math.random()*W, y: Math.random()*H,
+      s: 0.6 + Math.random()*1.6,
+      a: Math.random()*Math.PI*2,
+      v: 0.6 + Math.random()*1.4
+    }));
+  }
+  resize(); addEventListener('resize', resize, {passive:true});
+
+  const rs = getComputedStyle(document.documentElement);
+  const BRAND  = rs.getPropertyValue('--brand').trim()  || '#217DFC';
+  const ACCENT = rs.getPropertyValue('--accent').trim() || '#3AE2C4';
+
+  function loop(){
+    t += 0.006;
+    ctx.clearRect(0,0,W,H);
+
+    // هالات لونية ناعمة (aurora)
+    for(let i=0;i<3;i++){
+      const cx = (W/2) + Math.cos(t*1.2+i*2.1)*(W*0.18);
+      const cy = (H*0.62) + Math.sin(t*0.9+i*1.7)*(H*0.12);
+      const grd = ctx.createRadialGradient(cx,cy,0, cx,cy, Math.max(W,H)*0.6);
+      grd.addColorStop(0, i%2 ? ACCENT+'33' : BRAND+'33');
+      grd.addColorStop(1, 'transparent');
+      ctx.globalCompositeOperation = 'screen';
+      ctx.fillStyle = grd; ctx.beginPath(); ctx.arc(cx,cy, Math.max(W,H)*0.6, 0, Math.PI*2); ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    // جسيمات تتحرك في مسارات ملساء
+    ctx.fillStyle = '#cfe6ff';
+    parts.forEach(p=>{
+      p.a += 0.015*p.v;
+      const r = 18 + 12*Math.sin(t*2 + p.x*0.0008 + p.y*0.0006);
+      p.x += Math.cos(p.a)*r*0.04;
+      p.y += Math.sin(p.a)*r*0.04;
+      if(p.x<0) p.x+=W; if(p.x>W) p.x-=W; if(p.y<0) p.y+=H; if(p.y>H) p.y-=H;
+      ctx.globalAlpha = 0.5 + 0.5*Math.sin((p.x+p.y+t)*0.01);
+      ctx.fillRect(p.x, p.y, p.s, p.s);
+    });
+
+    requestAnimationFrame(loop);
+  }
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) loop();
+})();
+
+/* =============== SVG Layer: Neural Rings + Data Beams =============== */
+(()=>{
+  const svg = document.getElementById('aiScene');
+  if(!svg) return;
+  const netRot = document.getElementById('netRot');
+  const packets = document.getElementById('packets');
+  const beams = ['b1','b2','b3'].map(id=>document.getElementById(id));
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // بناء حلقات عصبية (عُقد + وصلات قصيرة)
+  const nodes=[]; const rings=[{N:28,R:160,off:.1},{N:18,R:100,off:.5},{N:10,R:58,off:.2}];
+  rings.forEach(r=>{
+    for(let i=0;i<r.N;i++){
+      const a=i/r.N*Math.PI*2 + r.off;
+      const x=Math.cos(a)*r.R, y=Math.sin(a)*r.R;
+      nodes.push({x,y});
+      const c=document.createElementNS(NS,'circle');
+      c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r','3.2');
+      c.setAttribute('fill','#C7E5F2'); c.setAttribute('opacity','.9');
+      netRot.appendChild(c);
+    }
+  });
+  for(let i=0;i<72;i++){
+    const a = nodes[Math.floor(Math.random()*nodes.length)];
+    const b = nodes[Math.floor(Math.random()*nodes.length)];
+    const l = document.createElementNS(NS,'line');
+    l.setAttribute('x1',a.x); l.setAttribute('y1',a.y);
+    l.setAttribute('x2',b.x); l.setAttribute('y2',b.y);
+    l.setAttribute('stroke','url(#gradBA)'); l.setAttribute('stroke-opacity','.35'); l.setAttribute('stroke-width','1.4');
+    netRot.appendChild(l);
+  }
+  // دوران نابض
+  let ang=0, z=1;
+  function spin(){
+    ang += 0.09; z = 1 + 0.02*Math.sin(performance.now()*0.0012);
+    netRot.setAttribute('transform',`rotate(${ang}) scale(${z})`);
+    requestAnimationFrame(spin);
+  }
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) spin();
+
+  // نقاط بيانات تتحرك على المسارات
+  function dot(r=3.2, col='#fff'){
+    const c=document.createElementNS(NS,'circle'); c.setAttribute('r',r); c.setAttribute('fill',col); return c;
+  }
+  const movers=[];
+  beams.forEach((path,i)=>{
+    const L = path.getTotalLength();
+    const n = 7 - i*2;
+    for(let k=0;k<n;k++){
+      const d = dot(3, i? '#cfe6ff':'#eaffff'); packets.appendChild(d);
+      movers.push({el:d, t:Math.random(), v:0.0008 + Math.random()*0.0012, L, path, wob: Math.random()*6});
+    }
+  });
+  function move(){
+    for(const m of movers){
+      m.t += m.v; if(m.t>1) m.t -= 1;
+      const p = m.path.getPointAtLength(m.t*m.L);
+      m.el.setAttribute('cx', p.x);
+      m.el.setAttribute('cy', p.y + Math.sin((m.t+m.wob)*20)*2);
+    }
+    requestAnimationFrame(move);
+  }
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) move();
+
+  // حركات خفيفة للمعادلات
+  const gs = svg.querySelectorAll('#glyphs text');
+  gs.forEach((el,i)=>{
+    el.animate(
+      [{transform:'translateY(0px)'}, {transform:'translateY(-18px)'}],
+      {duration: 5000+ i*600, direction:'alternate', iterations: Infinity, easing:'ease-in-out'}
+    );
+  });
+})();
+</script>
+<!-- ==================== /AI HERO ==================== -->

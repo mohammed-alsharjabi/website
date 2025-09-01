@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>مشاريعنا — شركة تقنية</title>
+  <meta name="description" content="معرض مشاريع احترافي: تفاصيل، صور، التقنيات المستخدمة، نتائج وأثر كل مشروع." />
+  <link rel="canonical" href="https://example.com/projects" />
+  <meta property="og:title" content="مشاريعنا — شركة تقنية" />
+  <meta property="og:description" content="استعرض أعمالنا التقنية مع تفاصيل التنفيذ والتقنيات والنتائج." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://example.com/og-projects.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="مشاريعنا — شركة تقنية" />
+  <meta name="twitter:description" content="استعرض أعمالنا التقنية مع تفاصيل التنفيذ والتقنيات والنتائج." />
+  <meta name="twitter:image" content="https://example.com/og-projects.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#0FB099; --brand-2:#108F80; --brand-3:#1C5C51;
+      --bg-0:#05080e; --bg-1:#0b1220; --bg-2:#0f172a; --ink:#EAFBF7; --muted:#9FB8B4;
+      --card:rgba(255,255,255,.04); --line:rgba(255,255,255,.12); --glass:rgba(255,255,255,.06);
+      --radius:20px; --pad:clamp(16px,4vw,40px);
+      --h1:clamp(28px,5vw,52px); --h2:clamp(22px,3.2vw,34px); --h3:clamp(18px,2.4vw,22px);
+      --body:clamp(14px,2vw,18px); --small:clamp(12px,1.8vw,14px)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:"Cairo", system-ui, Segoe UI, Roboto, Arial; color:var(--ink);
+      background: radial-gradient(1200px 700px at 70% -10%, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%); overflow-x:hidden}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    header{position:sticky; top:0; z-index:100; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,10,18,.7), rgba(7,10,18,.35)); border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding: 14px var(--pad); gap:12px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900}
+    .logo{width:34px; height:34px; border-radius:10px; background: conic-gradient(from 0deg, var(--brand), #5ae3cf, var(--brand-2), var(--brand-3), var(--brand)); box-shadow: 0 6px 18px rgba(0,0,0,.35), inset 0 0 24px rgba(15,176,153,.35)}
+    .menu{display:flex; gap:12px; align-items:center}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border-radius:12px; font-weight:800}
+    .lang-toggle{padding:8px 12px; border-radius:10px; border:1px solid var(--line); background:var(--glass); cursor:pointer; color:#dff3ef; font-weight:800}
+
+    .hero{position:relative; padding: 34px var(--pad) 20px; background: radial-gradient(700px 320px at 80% 0%, rgba(88,255,233,.06), transparent)}
+    .hero h1{margin:0; font-size:var(--h1); line-height:1.1; font-weight:900; background:linear-gradient(180deg, #dffbf6, #44c7b2); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .hero .sub{margin:8px 0 0; color:var(--muted)}
+    .filters{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px}
+    .chip{font-size:var(--small); padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:var(--glass); cursor:pointer}
+    .chip.active{background:rgba(15,176,153,.18)}
+
+    /* Grid */
+    .wrap{padding: var(--pad)}
+    .grid{display:grid; grid-template-columns:1fr; gap:18px}
+    @media (min-width:860px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    .card{position:relative; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); box-shadow:0 18px 45px rgba(0,0,0,.35); transform: translateY(18px) scale(.98); opacity:0; transition: transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(0) scale(1); box-shadow:0 30px 70px rgba(0,0,0,.55)}
+    .shot{aspect-ratio:16/10; background: radial-gradient(600px 280px at 70% 20%, rgba(15,176,153,.25), transparent), linear-gradient(180deg, #07101a, #0e1926)}
+    .meta{padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .tag{font-size:var(--small); padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:var(--glass)}
+
+    /* Detail View */
+    .hidden{display:none !important}
+    .detail{padding: var(--pad); display:grid; gap:18px}
+    .crumbs{font-size:var(--small); color:#cdebe6}
+    .hero-shot{border:1px solid var(--line); border-radius:18px; overflow:hidden; background:linear-gradient(120deg,#0f172a,#0b1220); aspect-ratio:21/9; box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .detail-head{display:grid; gap:10px}
+    @media (min-width:980px){ .detail-head{grid-template-columns:1.2fr .8fr} }
+    .hgroup h2{margin:0; font-size:var(--h2); font-weight:900}
+    .hgroup p{margin:6px 0 0; color:var(--muted)}
+    .facts{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+    @media (min-width:720px){ .facts{grid-template-columns:repeat(4,1fr)} }
+    .fact{background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:12px}
+    .fact .k{font-size:var(--small); color:#bfeae3}
+    .fact .v{font-weight:900}
+    .badges{display:flex; flex-wrap:wrap; gap:8px}
+    .badge{display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:var(--glass)}
+    .badge svg{width:18px; height:18px}
+
+    .tabs{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+    .tab{padding:8px 12px; border-radius:10px; border:1px solid var(--line); background:var(--glass); cursor:pointer}
+    .tab.active{background:rgba(15,176,153,.18)}
+    .panels{margin-top:12px}
+    .panel{display:none; border:1px solid var(--line); background:var(--card); border-radius:14px; padding:14px}
+    .panel.active{display:block}
+
+    .two-col{display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width:980px){ .two-col{grid-template-columns:1fr 1fr} }
+
+    .gallery{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (min-width:980px){ .gallery{grid-template-columns:repeat(4,1fr)} }
+    .shot-sm{aspect-ratio:4/3; border:1px solid var(--line); border-radius:12px; background:radial-gradient(400px 180px at 70% 20%, rgba(15,176,153,.22), transparent), linear-gradient(180deg, #0a1422, #0f1c2f)}
+
+    footer{padding: 26px var(--pad) 40px; color:#a5c7c1; border-top:1px solid rgba(255,255,255,.08)}
+
+    .wa{ position:fixed; inset-inline-start:18px; inset-block-end:18px; z-index:120 }
+    .wa a{ position:relative; display:grid; place-items:center; width:54px; height:54px; border-radius:50%; background:#25D366; color:#fff; box-shadow:0 14px 35px rgba(0,0,0,.35) }
+    .wa a::after{ content:""; position:absolute; inset:-10px; border-radius:50%; border:2px solid rgba(37,211,102,.3); animation:pulse 1.8s infinite ease-out }
+    @keyframes pulse{ 0%{ transform:scale(.9); opacity:1 } 100%{ transform:scale(1.2); opacity:0 } }
+
+    /* Noscript fallback */
+    noscript .card{opacity:1 !important; transform:none !important}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand"><i class="logo"></i> <span id="brandName">شركة تقنية</span></div>
+      <div class="menu">
+        <a class="btn" href="#/">العودة للمعرض</a>
+        <button id="langToggle" class="lang-toggle">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 data-i18n="hero.title">مشاريعنا</h1>
+    <p class="sub" data-i18n="hero.sub">حلول حقيقية صنعت فرقًا ملموسًا لعملائنا.</p>
+    <div class="filters" id="filters"></div>
+  </section>
+
+  <!-- LIST VIEW -->
+  <main id="listView" class="wrap">
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <!-- DETAIL VIEW -->
+  <main id="detailView" class="detail hidden">
+    <div class="crumbs"><a href="#/" data-i18n="crumbs.back">العودة</a> · <span id="crumbTitle">—</span></div>
+    <div class="hero-shot" id="detailHero"></div>
+    <div class="detail-head">
+      <div class="hgroup">
+        <h2 id="detailTitle">—</h2>
+        <p id="detailSummary" class="sub">—</p>
+      </div>
+      <div>
+        <div class="facts">
+          <div class="fact"><div class="k" data-i18n="facts.client">العميل</div><div class="v" id="fClient">—</div></div>
+          <div class="fact"><div class="k" data-i18n="facts.year">السنة</div><div class="v" id="fYear">—</div></div>
+          <div class="fact"><div class="k" data-i18n="facts.duration">المدة</div><div class="v" id="fDuration">—</div></div>
+          <div class="fact"><div class="k" data-i18n="facts.scope">النطاق</div><div class="v" id="fScope">—</div></div>
+        </div>
+        <div class="badges" id="techBadges" style="margin-top:10px"></div>
+      </div>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+    <div class="panels">
+      <section id="panel-overview" class="panel"></section>
+      <section id="panel-features" class="panel"></section>
+      <section id="panel-gallery" class="panel"></section>
+      <section id="panel-links" class="panel"></section>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="y"></span> <span id="brandFoot">شركة تقنية</span> — جميع الحقوق محفوظة.
+  </footer>
+
+  <div class="wa"><a id="waFloat" href="https://wa.me/966568767724" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a></div>
+
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+  // ====== Data ======
+  const WA_NUMBER = '966568767724';
+  const PROJECTS = [
+    {
+      id:'saas-analytics',
+      title:{ar:'منصة SaaS لتحليلات المبيعات', en:'SaaS Sales Analytics Platform'},
+      tag:'SaaS', year:2025, client:'Retail Pro', duration:'3 أشهر', scope:'Frontend + Backend',
+      summary:{ar:'لوحات تفاعلية لحظية لمبيعات المتاجر مع توقعات بالذكاء الاصطناعي.', en:'Realtime dashboards with AI forecasts for multi-store retail.'},
+      cover:'#0a1422,#0f1c2f',
+      features:{
+        ar:[
+          'لوحات KPI لحظية ومتعددة الفروع',
+          'فلترة متقدمة حسب المتجر/التصنيف/الفترة',
+          'تصدير PDF/CSV وتكامل مع Google Sheets',
+          'تنبؤ المبيعات للأسبوع القادم (+12%)'
+        ],
+        en:[
+          'Realtime branch KPIs',
+          'Advanced filters by store/category/time',
+          'PDF/CSV export + Google Sheets sync',
+          'Sales forecast for next week (+12%)'
+        ]
+      },
+      overview:{
+        ar:'قمنا بتصميم تجربة واضحة تضع الأهم أولاً: المقاييس الحرجة، واتجاهات المبيعات، وتوقعات أسبوعية. بنيت المنصة على مكونات أداء عالية وتخزين مؤقت ذكي.',
+        en:'We designed a clear UX focusing on critical KPIs, trends, and weekly forecasts, built on high‑performance components and smart caching.'
+      },
+      results:[{k:'TTI', v:'1.9s'},{k:'اعتماد المستخدمين', v:'+34%'},{k:'دقة التنبؤ', v:'±6%'}],
+      tech:['next','react','tailwind','node','postgres','echarts'],
+      gallery:4,
+      links:[{label:'موقع الإنتاج', href:'#'}, {label:'دراسة حالة PDF', href:'#'}]
+    },
+    {
+      id:'fin-payments',
+      title:{ar:'بوابة دفع مؤسسية', en:'Enterprise Payments Gateway'},
+      tag:'FinTech', year:2024, client:'PayNova', duration:'4 أشهر', scope:'API + Dashboard',
+      summary:{ar:'بوابة دفع متوافقة مع PCI ودعم Webhooks ومعدلات تحويل أعلى.', en:'PCI‑compliant gateway with webhooks and higher conversion.'},
+      cover:'#0b1220,#0f172a',
+      features:{
+        ar:['دعم بطاقات ومدفوعات رقمية','تحليل أسباب الرفض وتحسين التحويل (+8%)','لوغ للتدقيق وRBAC متعدد الأدوار'],
+        en:['Cards & digital wallets','Decline analytics → +8% conversion','Audit logs & RBAC roles']
+      },
+      overview:{
+        ar:'ركزنا على الأداء والأمان: تشفير، سجلات تدقيق، وأدوار دقيقة. صممنا لوحة مرنة لفرق العمليات.',
+        en:'Security and performance first: encryption, audit trails, granular roles, and an ops‑friendly dashboard.'
+      },
+      results:[{k:'وقت الموافقة', v:'< 400ms'},{k:'تحويل', v:'+8%'},{k:'الحوادث', v:'0 Sev‑1'}],
+      tech:['laravel','mysql','redis','oauth','docker','k8s'],
+      gallery:6,
+      links:[{label:'موقع الإنتاج', href:'#'}]
+    },
+    {
+      id:'mobile-booking',
+      title:{ar:'تطبيق حجوزات سحابي', en:'Cloud Booking App'},
+      tag:'Mobile', year:2025, client:'Nova Clinics', duration:'6 أسابيع', scope:'Flutter + Backend',
+      summary:{ar:'حجوزات ومواعيد وتنبيهات Push مع مزامنة تقويم.', en:'Bookings, schedules and push alerts with calendar sync.'},
+      cover:'#0a1120,#0b1b30',
+      features:{ ar:['تنبيهات Push فورية','مزامنة تقاويم iCal','مدفوعات داخل التطبيق'], en:['Instant push alerts','iCal calendars sync','In‑app payments'] },
+      overview:{ ar:'تجربة بسيطة وسريعة تدعم تعدد اللغات ووضع عدم الاتصال.', en:'Fast, bilingual UX with offline support.' },
+      results:[{k:'CR App', v:'+19%'},{k:'أخطاء', v:'−72%'},{k:'تقييم', v:'4.8★'}],
+      tech:['flutter','firebase','rest','stripe','maps'],
+      gallery:5,
+      links:[{label:'Android', href:'#'},{label:'iOS', href:'#'}]
+    }
+  ];
+
+  const ICONS = {
+    next:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M12 2a10 10 0 1 0 10 10'/><path d='M7 7l10 10'/></svg>`,
+    react:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><circle cx='12' cy='12' r='2'/><ellipse rx='10' ry='4' cx='12' cy='12' transform='rotate(60 12 12)'/><ellipse rx='10' ry='4' cx='12' cy='12' transform='rotate(-60 12 12)'/><ellipse rx='10' ry='4' cx='12' cy='12'/></svg>`,
+    tailwind:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 6c-2.7 0-4.4 1.3-5 4 1-.7 2-.9 3-.5 1 .4 1.7 1.3 2 2.7.8-2 2.3-3 4.5-3 2 0 3.4.9 4.5 2.7-1 .7-2 .9-3 .5-1-.4-1.7-1.3-2-2.7-.8 2-2.3 3-4.5 3-2 0-3.4-.9-4.5-2.7 1-.7 2-.9 3-.5 1 .4 1.7 1.3 2 2.7.8-2 2.3-3 4.5-3'/></svg>`,
+    node:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 2l9 5v10l-9 5-9-5V7l9-5zm0 3.1L6 7.5v8.9l6 3.4 6-3.4V7.5l-6-2.4z'/></svg>`,
+    postgres:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M6 9c0-4 12-4 12 0v6c0 4-12 4-12 0V9z'/><path d='M12 7v10'/></svg>`,
+    echarts:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 2a10 10 0 1 0 10 10h-8z'/></svg>`,
+    laravel:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M3 7l9-4 9 4-9 4-9-4z'/><path d='M3 7v10l9 4 9-4V7'/></svg>`,
+    mysql:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M4 17c0-5 16-5 16 0s-16 5-16 0z'/><path d='M4 7c0 5 16 5 16 0s-16-5-16 0z'/></svg>`,
+    redis:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M4 8l8-3 8 3-8 3-8-3zm0 4l8 3 8-3v4l-8 3-8-3v-4z'/></svg>`,
+    oauth:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><circle cx='9' cy='12' r='3'/><path d='M2 12a7 7 0 0 1 14 0 7 7 0 0 1-14 0zm13 0h7'/></svg>`,
+    docker:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M3 13h18v3c0 3-3 6-7 6H9c-4 0-6-3-6-6v-3z'/><path d='M5 11h4V7H5v4zm5 0h4V7h-4v4zm5 0h4V7h-4v4z'/></svg>`,
+    k8s:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><polygon points='12 2 21 8 21 16 12 22 3 16 3 8 12 2'/><path d='M12 6v12M6.5 9.5l11 5M17.5 9.5l-11 5'/></svg>`,
+    flutter:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M14 3l-9 9 3 3 12-12zM8 18l4 4 8-8-4-4z'/></svg>`,
+    firebase:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M4 20l4-16 4 6 4-4 4 14-16 0z'/></svg>`,
+    rest:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><rect x='3' y='7' width='18' height='10' rx='2'/><path d='M7 12h10'/></svg>`,
+    stripe:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M5 15c0 3 4 5 7 5s7-2 7-5-4-5-7-5-7 2-7 5z'/></svg>`,
+    maps:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M12 21s7-5 7-11a7 7 0 1 0-14 0c0 6 7 11 7 11z'/><circle cx='12' cy='10' r='2'/></svg>`
+  };
+
+  const UI = {
+    ar: {
+      hero:{ title:'مشاريعنا', sub:'حلول حقيقية صنعت فرقًا ملموسًا لعملائنا.' },
+      tabs:['نظرة عامة','المميزات','الصور','روابط'],
+      crumbs:{ back:'العودة' },
+      facts:{ client:'العميل', year:'السنة', duration:'المدة', scope:'النطاق' },
+      filters:{ all:'الكل' },
+      cta:{ discuss:'ناقشنا مشروعك على واتساب' }
+    },
+    en: {
+      hero:{ title:'Projects', sub:'Real solutions that made measurable impact.' },
+      tabs:['Overview','Features','Gallery','Links'],
+      crumbs:{ back:'Back' },
+      facts:{ client:'Client', year:'Year', duration:'Duration', scope:'Scope' },
+      filters:{ all:'All' },
+      cta:{ discuss:'Discuss your project on WhatsApp' }
+    }
+  };
+  let lang = 'ar';
+
+  // ====== Helpers ======
+  const el = (sel, root=document) => root.querySelector(sel);
+  const els = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+  const byId = id => PROJECTS.find(p=>p.id===id);
+  const hash = () => decodeURIComponent(location.hash.replace(/^#/,'').trim());
+  const setLang = (l)=>{ lang = l; document.documentElement.lang = l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; el('#langToggle').textContent = l==='ar'?'EN':'AR'; applyI18n(); };
+  function applyI18n(){ const dict = UI[lang]; el('#brandName').textContent = lang==='ar'?'شركة تقنية':'Tech Company'; el('#brandFoot').textContent = el('#brandName').textContent; el('[data-i18n="hero.title"]').textContent = dict.hero.title; el('[data-i18n="hero.sub"]').textContent = dict.hero.sub; el('[data-i18n="crumbs.back"]').textContent = dict.crumbs.back; els('[data-i18n^="facts."]').forEach(n=>{ const k=n.getAttribute('data-i18n').split('.')[1]; n.textContent = dict.facts[k]; }); }
+
+  // ====== Build Filters ======
+  const filtersEl = el('#filters');
+  const tags = Array.from(new Set(['All', ...PROJECTS.map(p=>p.tag)]));
+  function drawFilters(){ filtersEl.innerHTML = ''; tags.forEach(t=>{ const b = document.createElement('button'); b.className = 'chip'; b.dataset.tag = t; b.textContent = (lang==='ar'? (t==='All'? UI[lang].filters.all : t) : t); if(t==='All') b.classList.add('active'); b.addEventListener('click',()=>{ els('.chip', filtersEl).forEach(c=>c.classList.remove('active')); b.classList.add('active'); drawGrid(t==='All'? null : t); }); filtersEl.appendChild(b); }); }
+
+  // ====== Grid ======
+  const grid = el('#grid');
+  function cardHTML(p){
+    return `<article class="card" data-id="${p.id}">
+      <div class="shot" style="background: radial-gradient(600px 280px at 70% 20%, rgba(15,176,153,.25), transparent), linear-gradient(180deg, ${p.cover})"></div>
+      <div class="meta"><div><strong>${p.title[lang]}</strong><div style="color:var(--muted); font-size:var(--small)">${p.summary[lang]}</div></div><span class="tag">${p.tag}</span></div>
+    </article>`;
+  }
+  function drawGrid(tag=null){ grid.innerHTML = PROJECTS.filter(p=>!tag||p.tag===tag).map(cardHTML).join(''); gsap.utils.toArray('.card').forEach((c,i)=>{ gsap.to(c,{y:0,scale:1,opacity:1,duration:.6,delay:i*0.05,ease:'power2.out'}); c.addEventListener('click',()=>{ location.hash = `#/p/${c.dataset.id}`; });}); }
+
+  // ====== Detail ======
+  const detail = {
+    wrap: el('#detailView'), hero: el('#detailHero'), title: el('#detailTitle'), sum: el('#detailSummary'), breadcrumbs: el('#crumbTitle'), badges: el('#techBadges'),
+    facts: {client:el('#fClient'), year:el('#fYear'), duration:el('#fDuration'), scope:el('#fScope')},
+    tabs: el('#tabs'), panels: { overview:el('#panel-overview'), features:el('#panel-features'), gallery:el('#panel-gallery'), links:el('#panel-links') }
+  };
+  const TAB_KEYS = ['overview','features','gallery','links'];
+  function techBadge(key){ return `<span class="badge">${ICONS[key]||''}<span>${key.toUpperCase()}</span></span>`; }
+  function drawDetail(id){
+    const p = byId(id); if(!p){ location.hash = '#/'; return; }
+    el('#listView').classList.add('hidden'); detail.wrap.classList.remove('hidden'); window.scrollTo({top:0,behavior:'smooth'});
+    detail.hero.style.background = `radial-gradient(700px 260px at 70% 20%, rgba(15,176,153,.25), transparent), linear-gradient(120deg, ${p.cover})`;
+    detail.title.textContent = p.title[lang]; detail.sum.textContent = p.summary[lang]; detail.breadcrumbs.textContent = p.title[lang];
+    detail.facts.client.textContent = p.client; detail.facts.year.textContent = p.year; detail.facts.duration.textContent = p.duration; detail.facts.scope.textContent = p.scope;
+    detail.badges.innerHTML = p.tech.map(techBadge).join('');
+
+    // Tabs
+    const labels = UI[lang].tabs; detail.tabs.innerHTML = labels.map((t,i)=>`<button class='tab ${i?"":"active"}' data-k='${TAB_KEYS[i]}'>${t}</button>`).join('');
+    els('.tab', detail.tabs).forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.k)));
+
+    // Panels
+    detail.panels.overview.innerHTML = `<div class='two-col'>
+      <div><h3 style='margin:0 0 6px'>${labels[0]}</h3><p style='color:var(--muted)'>${p.overview[lang]}</p>
+        <div style='display:flex; flex-wrap:wrap; gap:8px; margin-top:8px'>${(p.results||[]).map(r=>`<span class='badge'><strong>${r.k}</strong>&nbsp;${r.v}</span>`).join('')}</div>
+      </div>
+      <div class='gallery'>${Array.from({length:p.gallery||4}).map(()=>`<div class='shot-sm'></div>`).join('')}</div>
+    </div>
+    <div style='margin-top:10px; display:flex; gap:8px; flex-wrap:wrap'>
+      <a class='btn' href='https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('أرغب بمشروع مشابه: '+p.title[lang])}' target='_blank' rel='noopener'>${UI[lang].cta.discuss} 🔗</a>
+    </div>`;
+
+    detail.panels.features.innerHTML = `<ul style='margin:0; padding:0; display:grid; gap:10px'>${p.features[lang].map(f=>`<li style='list-style:none; display:flex; gap:10px'><span style='width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 6px rgba(15,176,153,.16)'></span><span>${f}</span></li>`).join('')}</ul>`;
+
+    detail.panels.gallery.innerHTML = `<div class='gallery'>${Array.from({length:p.gallery||6}).map(()=>`<div class='shot-sm'></div>`).join('')}</div>`;
+
+    detail.panels.links.innerHTML = (p.links||[]).map(l=>`<p><a class='btn' href='${l.href}' target='_blank' rel='noopener'>${l.label} ↗</a></p>`).join('') || `<p style='color:var(--muted)'>—</p>`;
+
+    activateTab('overview');
+  }
+  function activateTab(k){ els('.tab', detail.tabs).forEach(b=>b.classList.toggle('active', b.dataset.k===k)); Object.entries(detail.panels).forEach(([key,p])=>p.classList.toggle('active', key===k)); }
+
+  function drawList(){ el('#detailView').classList.add('hidden'); el('#listView').classList.remove('hidden'); drawGrid(); }
+
+  function router(){
+    const h = hash();
+    if(!h || h==='/' || h==='/projects'){ drawList(); return; }
+    const m = h.match(/^\/p\/(.+)$/); if(m){ drawDetail(m[1]); return; }
+    drawList();
+  }
+
+  // ====== Init ======
+  document.getElementById('y').textContent = new Date().getFullYear();
+  document.getElementById('langToggle').addEventListener('click',()=> setLang(lang==='ar'?'en':'ar'));
+  setLang('ar');
+  drawFilters();
+  drawGrid();
+  window.addEventListener('hashchange', router);
+  router();
+
+  // Reveal animation for cards
+  if(window.gsap){ gsap.utils.toArray('.card').forEach((c,i)=> gsap.to(c,{y:0,scale:1,opacity:1,duration:.6,delay:i*0.05,ease:'power2.out'})); }
+  </script>
+</body>
+</html>

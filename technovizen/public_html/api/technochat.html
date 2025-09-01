@@ -1,0 +1,200 @@
+
+<!-- === Technovizen AI Chat — Floating Widget === -->
+<style id="tvz-ai-style">
+  :root{
+    --tvz-ai-size: 60px;
+    --tvz-ai-offset: 96px; /* يبعد فوق زر الواتساب لو موجود */
+  }
+  .tvz-ai-btn{
+    position: fixed;
+    inset-inline-start: 18px;        /* RTL: يمين الشاشة. غيّر إلى inset-inline-end لو تبي يسار */
+    inset-block-end: var(--tvz-ai-offset);
+    z-index: 130;
+    width: var(--tvz-ai-size); height: var(--tvz-ai-size);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+    color: #fff; box-shadow: 0 14px 35px rgba(0,0,0,.35);
+    border: 1px solid rgba(255,255,255,.18);
+    cursor: pointer;
+  }
+  .tvz-ai-btn svg{ width: 28px; height: 28px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.3)); }
+
+  .tvz-ai-panel{
+    position: fixed;
+    inset-inline-start: 18px;  inset-block-end: calc(var(--tvz-ai-offset) + 12px + var(--tvz-ai-size));
+    width: min(360px, 92vw);
+    max-height: min(70vh, 640px);
+    display: none; flex-direction: column; overflow: hidden;
+    z-index: 131; border-radius: 16px;
+    background: rgba(12, 23, 48, .86);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 30px 70px rgba(0,0,0,.55);
+    color: var(--ink, #EAF7FF);
+  }
+  .tvz-ai-panel.open{ display: flex; }
+
+  .tvz-ai-head{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding: 12px 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  .tvz-ai-title{ display:flex; align-items:center; gap:10px; font-weight:900 }
+  .tvz-ai-dot{ width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow:0 0 0 6px rgba(58,226,196,.18) }
+  .tvz-ai-close{ all:unset; cursor:pointer; padding:6px; border-radius:10px; }
+  .tvz-ai-close:hover{ background: rgba(255,255,255,.06); }
+
+  .tvz-ai-body{ padding: 10px 12px; display:flex; flex-direction:column; gap:8px; overflow:auto }
+  .tvz-ai-msg{
+    max-width: 88%; padding:10px 12px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.05); line-height: 1.7; font-size: 14px;
+    white-space: pre-wrap;
+  }
+  .tvz-ai-msg.me{ margin-inline-start:auto; background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06)); }
+  .tvz-ai-msg.ai{ border-color: rgba(129,176,226,.35); }
+
+  .tvz-ai-input{
+    display:flex; align-items:center; gap:8px; padding: 10px 12px;
+    border-top:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03);
+  }
+  .tvz-ai-input textarea{
+    all:unset; flex:1; min-height:36px; max-height:120px; overflow:auto;
+    padding:10px 12px; border-radius:12px; background: rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14); color:#eaffff; font-size:14px;
+  }
+  .tvz-ai-send{
+    all:unset; cursor:pointer; padding:10px 12px; border-radius:12px; font-weight:800;
+    border:1px solid rgba(255,255,255,.14);
+    background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    color:#e9f4ff;
+  }
+
+  /* اتجاه الواجهة حسب لغة الصفحة */
+  .tvz-ai-panel[dir="rtl"] .tvz-ai-msg.me{ margin-inline-start: 0; margin-inline-end:auto; }
+  @media (prefers-reduced-motion: reduce){
+    .tvz-ai-btn, .tvz-ai-panel{ transition: none !important; }
+  }
+</style>
+
+<div class="tvz-ai-btn" id="tvzAiBtn" aria-label="مساعد Technovizen">
+  <!-- أيقونة روبوت صغيرة -->
+  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="3" y="8" width="18" height="12" rx="6" fill="url(#tvzGrad)"></rect>
+    <circle cx="9" cy="14" r="1.8" fill="#fff"></circle>
+    <circle cx="15" cy="14" r="1.8" fill="#fff"></circle>
+    <path d="M12 3v3M6 6l2 2M18 6l-2 2" />
+    <defs>
+      <linearGradient id="tvzGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#217DFC"/><stop offset="1" stop-color="#3AE2C4"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<section class="tvz-ai-panel" id="tvzAiPanel">
+  <div class="tvz-ai-head">
+    <div class="tvz-ai-title"><span class="tvz-ai-dot"></span> <span>مساعد Technovizen</span></div>
+    <button class="tvz-ai-close" id="tvzAiClose" aria-label="إغلاق">✕</button>
+  </div>
+  <div class="tvz-ai-body" id="tvzAiBody" role="log" aria-live="polite"></div>
+  <div class="tvz-ai-input">
+    <textarea id="tvzAiText" placeholder="اكتب سؤالك… (اضغط Enter للإرسال)"></textarea>
+    <button class="tvz-ai-send" id="tvzAiSend">إرسال</button>
+  </div>
+</section>
+
+<script id="tvz-ai-widget">
+(function(){
+  const lang = document.documentElement.lang || 'ar';
+  const dir  = document.documentElement.dir  || (lang.startsWith('ar') ? 'rtl' : 'ltr');
+
+  const btn   = document.getElementById('tvzAiBtn');
+  const panel = document.getElementById('tvzAiPanel'); panel.setAttribute('dir', dir);
+  const body  = document.getElementById('tvzAiBody');
+  const input = document.getElementById('tvzAiText');
+  const send  = document.getElementById('tvzAiSend');
+  const close = document.getElementById('tvzAiClose');
+
+  // ====== اختيار الموضع تلقائيًا إذا وجد زر واتساب (لمنع التداخل)
+  const wa = document.getElementById('waFloat');
+  if(!wa){
+    // ما في واتساب؟ خلّي الزر أسفل يمين/يسار حسب dir بدون إزاحة كبيرة
+    document.documentElement.style.setProperty('--tvz-ai-offset', '18px');
+  }
+
+  // ====== رسائل مساعدة افتراضية (يمكن تدريبها لاحقًا)
+  const KB = [
+    {q:/خدمات|service|services/i, a:'خدماتنا: استشارات المنتج، تطوير الواجهات (React/Next.js + WebGL)، هندسة السحابة، ذكاء تحليلي وتكاملات. تفضّل صفحة "الخدمات".'},
+    {q:/سعر|تكلفة|بكم|quote|price/i, a:'التكلفة تعتمد على النطاق. اكتب مواصفاتك أو راسلنا واتساب وسنرسل عرضًا دقيقًا خلال ساعات.'},
+    {q:/موعد|حجز|meeting|book/i, a:'اختر الموعد المناسب لك من قسم "تواصل وحجز" وسنؤكد عبر واتساب.'},
+    {q:/مشاريع|portfolio|works/i, a:'اطّلع على أمثلة مشاريعنا في قسم "المشاريع" — واجهات غنية بالحركة وأداء مُحسّن.'},
+    {q:/تطبيق|app|موبايل/i, a:'نطوّر تطبيقات Flutter/React-Native مع Backend قابل للتوسع ومراحل واضحة حتى النشر.'},
+    {q:/تقنيات|stack|tech/i, a:'نستخدم: Next.js/React، Node/Laravel/Django، PostgreSQL/MySQL/MongoDB، Docker/Kubernetes.'},
+    {q:/تواصل|واتساب|whats|contact/i, a:'يسعدنا تواصلك! زر الواتساب العائم جاهز، أو أرسل رسالة من النموذج وسنرد سريعًا.'}
+  ];
+  const WELCOME = dir==='rtl'
+    ? 'أهلًا بك! أنا مساعد Technovizen الذكي — كيف أقدر أساعدك؟'
+    : 'Hi! I’m the Technovizen assistant — how can I help?';
+
+  // ====== حفظ المحادثة محليًا
+  const KEY = 'tvz_ai_chat';
+  function save(){ localStorage.setItem(KEY, body.innerHTML); }
+  function load(){ const s = localStorage.getItem(KEY); if(s) body.innerHTML = s; }
+  load();
+  if(!body.children.length) addMsg('ai', WELCOME);
+
+  // ====== واجهة (إظهار/إخفاء)
+  btn.addEventListener('click', ()=> panel.classList.toggle('open'));
+  close.addEventListener('click', ()=> panel.classList.remove('open'));
+
+  // ====== إرسال
+  input.addEventListener('keydown', (e)=>{
+    if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); send.click(); }
+  });
+  send.addEventListener('click', async ()=>{
+    const text = (input.value||'').trim();
+    if(!text) return;
+    addMsg('me', text);
+    input.value = ''; autoScroll();
+
+    // جرّب مزوّد خارجي لو حدّدت endpoint؛ وإلا ردود افتراضية
+    const AI_ENDPOINT = null; // ضع رابط واجهتك/مزودك هنا عند الربط (POST JSON)
+    try{
+      if(AI_ENDPOINT){
+        const res = await fetch(AI_ENDPOINT, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({message: text, lang})
+        });
+        const data = await res.json();
+        addMsg('ai', data.answer || '…');
+      }else{
+        // رد تلقائي بسيط من قاعدة المعرفة
+        const hit = KB.find(r => r.q.test(text));
+        addMsg('ai', hit ? hit.a : (dir==='rtl'
+          ? 'فهمت سؤالك 👌 — لو تبغى عرضًا دقيقًا أقدر أجهّزه، أو استخدم زر الواتساب للتواصل المباشر.'
+          : 'Got it 👌 — I can prepare a quote or you can use the WhatsApp button for direct contact.'));
+      }
+    }catch(e){
+      addMsg('ai', dir==='rtl' ? 'حدث خطأ مؤقت أثناء المعالجة. جرّب مجددًا أو تواصل عبر واتساب.' : 'Temporary error. Please try again or reach us on WhatsApp.');
+    }
+    autoScroll(); save();
+  });
+
+  function addMsg(who, text){
+    const b = document.createElement('div');
+    b.className = `tvz-ai-msg ${who}`;
+    b.textContent = text;
+    body.appendChild(b);
+  }
+  function autoScroll(){ body.scrollTop = body.scrollHeight; }
+
+  // افتح مباشر عبر ?chat=1
+  if(new URLSearchParams(location.search).get('chat')==='1'){
+    panel.classList.add('open');
+  }
+})();
+</script>
+<!-- === /Technovizen AI Chat === -->

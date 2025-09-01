@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Technovizen — منصّة تقنية مستقبلية</title>
+  <meta name="description" content="Technovizen — واجهات مذهلة وأنظمة ذكية: روبوتات تتناقل البيانات، شبكة عصبية، خدمات احترافية، مشاريع مختارة، فريق مبدع، وموعد فوري عبر واتساب." />
+  <link rel="canonical" href="https://www.technovizen.com/" />
+  <meta property="og:title" content="Technovizen — منصّة تقنية مستقبلية" />
+  <meta property="og:description" content="هيرو فضائي بربوتات تتبادل البيانات، شبكة عصبية، وخدمات متكاملة." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.technovizen.com/" />
+  <meta property="og:image" content="https://www.technovizen.com/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Technovizen — منصّة تقنية مستقبلية" />
+  <meta name="twitter:description" content="تجربة بصريّة مبهرِة وأداء عالٍ." />
+  <meta name="twitter:image" content="https://www.technovizen.com/og-cover.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Technovizen palette */
+      --brand:#217DFC;         /* الأزرق الأساسي */
+      --accent:#3AE2C4;        /* السيان/المينت */
+      --blue-200:#81B0E2;
+      --cyan-100:#C7E5F2;
+      --white:#FFFFFF;
+
+      /* خلفية داكنة مناسبة للثيم */
+      --bg-0:#040811; --bg-1:#081426; --bg-2:#0a1b33;
+      --ink:#EAF7FF; --muted:#9DB8D4; --glass:rgba(255,255,255,.06);
+      --card:#0c1730; --radius:20px; --pad:clamp(16px,4vw,40px);
+      --h1:clamp(32px,6vw,72px); --h2:clamp(22px,3.6vw,38px); --h3:clamp(18px,2.6vw,22px);
+      --body:clamp(14px,2.1vw,18px); --small:clamp(12px,2vw,14px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Cairo", system-ui, Segoe UI, Roboto, Arial; color:var(--ink);
+      background: radial-gradient(1200px 700px at 70% -10%, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* ====== Header ====== */
+    header{position:sticky; top:0; z-index:100; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(6,12,24,.72), rgba(6,12,24,.36)); border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px var(--pad); gap:12px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.4px}
+    .logo{width:36px; height:36px; border-radius:10px;
+      background: conic-gradient(from 0deg, var(--brand), #7fc1ff, var(--accent), var(--brand));
+      box-shadow: 0 6px 18px rgba(0,0,0,.35), inset 0 0 24px rgba(33,125,252,.35)}
+    .menu{display:flex; flex-wrap:wrap; gap:18px; align-items:center}
+    .menu a{opacity:.85; font-size:var(--body)} .menu a:hover{opacity:1}
+    .cta-btn{display:inline-flex; align-items:center; gap:8px; font-weight:800;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      color:#e9f4ff; padding:10px 14px; border-radius:12px; box-shadow:0 10px 35px rgba(0,0,0,.35);
+      transition:transform .2s ease, border-color .2s ease}
+    .cta-btn:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.28)}
+    .lang-toggle{margin-inline-start:8px; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06); cursor:pointer; color:#dff3ff; font-weight:800}
+
+    /* ====== HERO: Robots + Neural Net + Space ====== */
+    .hero{position:relative; min-height:100vh; display:grid; place-items:center; padding:var(--pad); isolation:isolate; overflow:hidden}
+    /* فضاء + نجوم */
+    #space{position:absolute; inset:0; z-index:0}
+    /* أفق كوكب */
+    .horizon{position:absolute; inset:0; z-index:1; pointer-events:none}
+    .horizon::after{
+      content:""; position:absolute; left:-10%; right:-10%; bottom:-30%;
+      height:80vh; border-radius:50%; filter:blur(24px);
+      background: radial-gradient(closest-side, rgba(33,125,252,.35), rgba(58,226,196,.18), transparent 65%);
+      box-shadow: 0 -80px 160px rgba(33,125,252,.25) inset;
+    }
+    /* مشهد SVG */
+    #scene{position:relative; z-index:2; width:min(1200px, 96vw); height:auto}
+    .ui{position:relative; z-index:3; display:grid; gap:16px; justify-items:center; text-align:center; max-width:min(960px, 92vw); margin-top:10px}
+    h1{
+      margin:0; font-size:var(--h1); line-height:1.08; font-weight:900; letter-spacing:.3px; text-wrap:balance;
+      background:linear-gradient(180deg, #e9f4ff 0%, #b8d7ff 55%, #6ecde0 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      filter:drop-shadow(0 10px 30px rgba(33,125,252,.10))
+    }
+    .lead{margin:0; max-width:60ch; color:var(--muted); font-size:var(--body); line-height:1.8}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+    .btn{position:relative; display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      color:#e9f4ff; font-weight:800; letter-spacing:.2px; text-decoration:none; transition: transform .2s ease, border-color .2s ease }
+    .btn:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.28) }
+    .ghost{ background:transparent }
+
+    /* أقسام عامة */
+    section{position:relative; padding: calc(var(--pad) + 20px) var(--pad); scroll-margin-top:80px}
+    section .sec-h{font-size:var(--h2); margin:0 0 18px; font-weight:900}
+    section .sec-sub{margin:0 0 28px; color:var(--muted); font-size:var(--body)}
+
+    /* خدمات، مشاريع، ... */
+    .services{ background: radial-gradient(700px 300px at 10% 0%, rgba(33,125,252,.10), transparent),
+                                radial-gradient(700px 300px at 90% 0%, rgba(58,226,196,.10), transparent) }
+    .grid-3{display:grid; grid-template-columns:1fr; gap:18px}
+    @media (min-width:760px){ .grid-3{ grid-template-columns: repeat(3, 1fr); gap:22px } }
+    .card{position:relative; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:22px; display:grid; gap:12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35); transform: translateY(18px) scale(.98); opacity:0; overflow:hidden;
+      transition: transform .25s ease, box-shadow .25s ease}
+    .card::before{content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px;
+      background:linear-gradient(135deg, rgba(33,125,252,.65), rgba(129,176,226,.35), rgba(58,226,196,.45));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude}
+    .icon{width:56px; height:56px; border-radius:14px; display:grid; place-items:center;
+      background:linear-gradient(135deg, rgba(33,125,252,.22), rgba(58,226,196,.16)); border:1px solid rgba(33,125,252,.28)}
+    .icon svg{width:28px; height:28px; transition:transform .35s ease}
+    .card:hover{transform:translateY(0) scale(1); box-shadow:0 30px 70px rgba(0,0,0,.55)}
+    .card:hover .icon svg{transform:scale(1.08) rotate(-4deg)}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px}
+    .chip{font-size:var(--small); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06)}
+
+    .projects{background: linear-gradient(180deg, rgba(4,8,17,1), rgba(4,8,17,.65))}
+    .grid-portfolio{display:grid; grid-template-columns:1fr; gap:18px}
+    @media (min-width:900px){ .grid-portfolio{ grid-template-columns: repeat(3, 1fr) } }
+    .project{position:relative; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.1);
+      background: linear-gradient(120deg, #0b1630, #09162a); transform-style:preserve-3d; perspective:1000px;
+      transition:transform .25s ease, box-shadow .25s ease; box-shadow:0 25px 60px rgba(0,0,0,.45)}
+    .project:hover{ transform: translateY(-6px) }
+    .shot{aspect-ratio: 16/11; background:
+      radial-gradient(600px 280px at 70% 20%, rgba(33,125,252,.28), transparent),
+      linear-gradient(180deg, #081426, #0e1d3a)}
+    .project .meta{padding:14px; display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .tag{font-size:var(--small); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06)}
+
+    /* Tech Stack */
+    .stack{background: radial-gradient(700px 320px at 10% 0%, rgba(33,125,252,.10), transparent)}
+    .stack-grid{display:grid; grid-template-columns:1fr; gap:16px}
+    @media (min-width:1000px){ .stack-grid{ grid-template-columns: 1fr 1fr; gap:18px } }
+    .group{background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.10); border-radius:18px; padding:18px; box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .group h3{margin:0 0 10px; font-size:var(--h3); display:flex; align-items:center; gap:10px}
+    .tech-list{display:flex; flex-wrap:wrap; gap:10px}
+    .tech{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06); font-size:var(--small)}
+    .tech .dot{width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 6px rgba(33,125,252,.14)}
+
+    /* FAQ */
+    .faq{ background: radial-gradient(700px 320px at 90% 100%, rgba(58,226,196,.10), transparent) }
+    .faq-wrap{display:grid; gap:14px}
+    details.faq-item{ background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:12px 14px }
+    details.faq-item > summary{cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; font-weight:700}
+    details.faq-item > summary::-webkit-details-marker{display:none}
+    .chev{transition: transform .25s ease; display:inline-grid; place-items:center; width:28px; height:28px; border-radius:8px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10)}
+    details[open] .chev{ transform: rotate(180deg) }
+    details.faq-item p{ margin:10px 6px 6px; color:var(--muted) }
+
+    /* Why / Steps / Team / About / Stats / Contact (نفس أسلوب القالب السابق) */
+    .why{ background: radial-gradient(700px 320px at 80% 0%, rgba(129,176,226,.16), transparent) }
+    .why-grid{display:grid; grid-template-columns:1fr; gap:14px}
+    @media (min-width:960px){ .why-grid{ grid-template-columns:1.1fr .9fr; gap:22px } }
+    .why .panel{ background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:18px; padding:18px }
+    .why ul{margin:0; padding:0; display:grid; gap:10px}
+    .why li{list-style:none; display:flex; gap:10px; align-items:flex-start}
+    .why .star{width:12px; height:12px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 6px rgba(33,125,252,.16)}
+
+    .choose{ background: linear-gradient(180deg, rgba(4,8,14,.7), rgba(4,8,14,.35)) }
+    .features{display:grid; grid-template-columns:1fr; gap:14px}
+    @media (min-width:980px){ .features{ grid-template-columns: repeat(3,1fr); gap:18px } }
+    .feature{position:relative; padding:18px; border-radius:18px; border:1px solid rgba(255,255,255,.10); background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .feature .num{position:absolute; inset-inline-start:14px; top:14px; font-weight:900; color:#b9d7ff; opacity:.55}
+
+    .steps{ background:#0b1f48; color:#e9f4ff; position:relative }
+    .steps::before{ content:""; position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 60px 60px; opacity:.15; pointer-events:none }
+    .steps-grid{position:relative; z-index:1; display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width:980px){ .steps-grid{ grid-template-columns: repeat(3,1fr) } }
+    .step{ background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:18px }
+    .step .no{ font-size: clamp(28px,4vw,40px); font-weight:900; opacity:.9; margin:0 0 4px }
+
+    .app-steps{ background: linear-gradient(180deg, #121233, #0b1220) }
+    .app-grid{display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width:980px){ .app-grid{ grid-template-columns: repeat(3,1fr) } }
+    .app{ background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:16px; padding:18px }
+
+    .team{ background: radial-gradient(700px 320px at 80% 0%, rgba(129,176,226,.16), transparent) }
+    .team-grid{display:grid; grid-template-columns:1fr; gap:18px}
+    @media (min-width:860px){ .team-grid{ grid-template-columns: repeat(3, 1fr) } }
+    .member{position:relative; border-radius:18px; padding:16px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); box-shadow: 0 18px 45px rgba(0,0,0,.35); transform: translateY(18px); opacity:0 }
+    .avatar{width:82px; height:82px; border-radius:18px; background: conic-gradient(from 0deg, var(--brand), #7fc1ff, var(--accent)); box-shadow: inset 0 0 24px rgba(33,125,252,.35) }
+    .member h4{margin:8px 0 4px; font-size: clamp(18px,2.4vw,22px)}
+    .role{color:#cbe0ff; font-size:var(--small); margin-bottom:8px}
+    .skills{display:flex; gap:8px; flex-wrap:wrap}
+    .skills .chip{background:rgba(255,255,255,.08)}
+    .social{display:flex; gap:10px; margin-top:10px}
+    .social a{width:36px; height:36px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.14); border-radius:10px; background:rgba(255,255,255,.06)}
+
+    .about{ background: radial-gradient(800px 320px at 80% 0%, rgba(129,176,226,.16), transparent) }
+    .about-wrap{display:grid; gap:22px; grid-template-columns:1fr}
+    @media (min-width:960px){ .about-wrap{ grid-template-columns: 1.2fr .8fr } }
+    .about .panel{background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); border-radius:18px; padding:18px}
+    .bullets{display:grid; gap:10px; margin:10px 0}
+    .bullets li{list-style:none; display:flex; align-items:flex-start; gap:10px}
+    .bullets li .dot{width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 6px rgba(33,125,252,.16)}
+
+    .stats{ background: linear-gradient(90deg, rgba(33,125,252,.12), rgba(58,226,196,.12) 40%, transparent) }
+    .stats .strip{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+    @media (min-width:800px){ .stats .strip{ grid-template-columns: repeat(4,1fr) } }
+    .stat{background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px; text-align:center}
+    .stat .num{font-size:clamp(26px,4vw,36px); font-weight:900}
+    .stat .lbl{color:var(--muted); font-size:var(--small)}
+
+    .contact{ background: radial-gradient(700px 320px at 10% 100%, rgba(33,125,252,.10), transparent) }
+    .contact-wrap{display:grid; grid-template-columns:1fr; gap:18px}
+    @media (min-width:980px){ .contact-wrap{ grid-template-columns: 1.2fr .8fr } }
+    .panel{background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:18px}
+    .form{display:grid; gap:10px}
+    .row{display:grid; gap:10px; grid-template-columns:1fr}
+    @media (min-width:640px){ .row{ grid-template-columns:1fr 1fr } }
+    input, textarea, select{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.06); color:#eaffff; outline:none }
+    textarea{ min-height:120px; resize:vertical }
+
+    footer{ padding: 30px var(--pad) 40px; color:#b9d2ee; border-top:1px solid rgba(255,255,255,.08) }
+    .footer-grid{display:grid; grid-template-columns:1fr; gap:18px}
+    @media (min-width:880px){ .footer-grid{ grid-template-columns: 1.2fr .8fr .8fr } }
+    .f-brand .logo{ width:42px; height:42px }
+
+    /* ====== Math glyphs floating on hero ====== */
+    .formula{font-size:12px; fill:#cfe6ff; opacity:.65}
+    @keyframes floatY{ from{transform:translateY(0)} to{transform:translateY(-20px)} }
+  </style>
+
+  <noscript><style>
+    #servicesGrid .card, #teamGrid .member, #portfolio .project, #stack .group, #faq .faq-item { opacity:1 !important; transform:none !important; }
+  </style></noscript>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="nav">
+      <div class="brand"><i class="logo"></i> <span data-i18n="brand.name">Technovizen</span></div>
+      <div class="menu">
+        <a href="#services" data-i18n="nav.services">الخدمات</a>
+        <a href="#projects" data-i18n="nav.projects">المشاريع</a>
+        <a href="#stack" data-i18n="nav.stack">التقنيات</a>
+        <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
+        <a href="#team" data-i18n="nav.team">الفريق</a>
+        <a href="#about" data-i18n="nav.about">نبذة</a>
+        <a href="#contact" class="cta-btn" data-i18n="nav.contact">تواصل وحجز</a>
+        <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ====== HERO (NEW) ====== -->
+  <section class="hero" id="home">
+    <canvas id="space"></canvas>
+    <div class="horizon"></div>
+
+    <!-- مشهد الروبوتات + الشبكة العصبية -->
+    <svg id="scene" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <!-- توهّج -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6" result="b"/> <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <linearGradient id="gradBlue" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#217DFC"/><stop offset="1" stop-color="#3AE2C4"/>
+        </linearGradient>
+      </defs>
+
+      <!-- شبكة عصبية كبيرة -->
+      <g id="net" transform="translate(600,260)">
+        <g id="net-rot" filter="url(#glow)">
+          <!-- دوائر -->
+          <!-- (سنملؤها من JS) -->
+        </g>
+      </g>
+
+      <!-- روبوت يسار -->
+      <g id="robotL" transform="translate(140,270)">
+        <path d="M-60,-30 q40-40 80,0 v60 q-40,40 -80,0z" fill="url(#gradBlue)" opacity=".18"/>
+        <path d="M-34,-46 q28-28 56,0 v92 q-28,28 -56,0z" fill="none" stroke="url(#gradBlue)" stroke-width="3"/>
+        <circle cx="12" cy="-6" r="6" fill="#3AE2C4" filter="url(#glow)"/>
+        <!-- ذراع + هاتف -->
+        <path d="M30,10 q40,10 72,38" stroke="url(#gradBlue)" stroke-width="3" fill="none"/>
+        <rect x="106" y="44" rx="6" ry="6" width="36" height="56" fill="#0c1730" stroke="#3AE2C4" stroke-width="2"/>
+        <circle cx="124" cy="54" r="4" fill="#3AE2C4"/>
+      </g>
+
+      <!-- روبوت يمين -->
+      <g id="robotR" transform="translate(1060,270) scale(-1,1)">
+        <path d="M-60,-30 q40-40 80,0 v60 q-40,40 -80,0z" fill="url(#gradBlue)" opacity=".18"/>
+        <path d="M-34,-46 q28-28 56,0 v92 q-28,28 -56,0z" fill="none" stroke="url(#gradBlue)" stroke-width="3"/>
+        <circle cx="12" cy="-6" r="6" fill="#3AE2C4" filter="url(#glow)"/>
+        <path d="M30,10 q40,10 72,38" stroke="url(#gradBlue)" stroke-width="3" fill="none"/>
+        <rect x="106" y="44" rx="6" ry="6" width="36" height="56" fill="#0c1730" stroke="#3AE2C4" stroke-width="2"/>
+        <circle cx="124" cy="54" r="4" fill="#3AE2C4"/>
+      </g>
+
+      <!-- مسارات تدفق البيانات بين الهاتفين عبر الشبكة -->
+      <path id="beam1" d="M246,314 C420,240 780,240 954,314" fill="none" stroke="url(#gradBlue)" stroke-width="2" stroke-opacity=".35"/>
+      <path id="beam2" d="M246,330 C480,280 720,280 954,330" fill="none" stroke="url(#gradBlue)" stroke-width="2" stroke-opacity=".28"/>
+      <path id="beam3" d="M246,350 C520,360 680,360 954,350" fill="none" stroke="url(#gradBlue)" stroke-width="2" stroke-opacity=".25"/>
+
+      <!-- نقاط (Packets) تتحرك على المسارات (سنعمل تحريكها بالـ JS) -->
+      <g id="packets" filter="url(#glow)"></g>
+
+      <!-- معادلات/رموز عائمة -->
+      <g opacity=".7">
+        <text class="formula" x="140" y="120">∑ wᵢxᵢ + b</text>
+        <text class="formula" x="260" y="90">∂L/∂w = 0</text>
+        <text class="formula" x="960" y="110">softmax(z)</text>
+        <text class="formula" x="820" y="70">y = Wx + b</text>
+        <text class="formula" x="560" y="60">σ(x)=1/(1+e^{-x})</text>
+      </g>
+    </svg>
+
+    <div class="ui">
+      <h1 data-i18n="hero.title">روبوتات تتناقل البيانات عبر شبكة عصبية كونية</h1>
+      <p class="lead" data-i18n="hero.lead">
+        تجربة افتتاحية تبهر العين: تبادل آمن وفوري للبيانات بين وكلاء ذكيين، بخلفية فضائية وأفق كوكبي—ألوان Technovizen بالكامل.
+      </p>
+      <div class="cta">
+        <a class="btn" href="#projects" data-i18n="hero.ctaPrimary">استعرض أعمالنا</a>
+        <a class="btn ghost" href="#services" data-i18n="hero.ctaSecondary">خدماتنا</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Why ====== -->
+  <section id="why" class="why">
+    <h2 class="sec-h" data-i18n="why.title">لماذا أحتاج إلى موقع إلكتروني؟</h2>
+    <p class="sec-sub" data-i18n="why.sub">استثمار ذكي يعزز نمو نشاطك التجاري ويمنحك فرصًا أكبر للتطور.</p>
+    <div class="why-grid">
+      <div class="panel">
+        <ul>
+          <li><span class="star"></span><span data-i18n="why.b1">انتشار أوسع — وصول لجمهور يتجاوز حدود الموقع الجغرافي.</span></li>
+          <li><span class="star"></span><span data-i18n="why.b2">جذب العملاء — مضاعفة العملاء المحتملين بالحضور الرقمي.</span></li>
+          <li><span class="star"></span><span data-i18n="why.b3">مواكبة التطور — تحديثات مستمرة تلاحق تغيّر السوق.</span></li>
+          <li><span class="star"></span><span data-i18n="why.b4">تسويق فعّال — قنوات متعددة وتكلفة أقل من التقليدي.</span></li>
+          <li><span class="star"></span><span data-i18n="why.b5">تعدد اللغات — الوصول لأسواق وشرائح جديدة.</span></li>
+          <li><span class="star"></span><span data-i18n="why.b6">تعزيز الثقة — صورة احترافية تعكس قوة علامتك.</span></li>
+        </ul>
+      </div>
+      <div class="panel" style="display:grid; place-items:center; text-align:center">
+        <div style="font-size:40px; margin-bottom:8px">✨</div>
+        <h3 style="margin:0 0 8px" data-i18n="why.ctaTitle">جاهز لبدء مشروعك؟</h3>
+        <p style="margin:0 0 12px; color:var(--muted)" data-i18n="why.ctaSub">تواصل معنا لنقدّم لك تصورًا أوليًا مجانيًا.</p>
+        <a class="btn" href="#contact" data-i18n="why.ctaBtn">ابدأ مشروعك الآن</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Choose ====== -->
+  <section id="choose" class="choose">
+    <h2 class="sec-h" data-i18n="choose.title">6 أسباب لاختيارنا</h2>
+    <p class="sec-sub" data-i18n="choose.sub">أداء، جودة، وتجربة تفوق التوقع.</p>
+    <div class="features" id="features">
+      <article class="feature"><div class="num">01</div><h3 data-i18n="choose.f1t">فريق محترف</h3><p data-i18n="choose.f1d">خبرة عميقة في تصميم/تطوير بلمسة حركية راقية.</p></article>
+      <article class="feature"><div class="num">02</div><h3 data-i18n="choose.f2t">حلول متكاملة</h3><p data-i18n="choose.f2d">مواقع ومتاجر وتطبيقات مع تكامل دفع وشحن.</p></article>
+      <article class="feature"><div class="num">03</div><h3 data-i18n="choose.f3t">أداء وسيو</h3><p data-i18n="choose.f3d">سرعة عالية وتجربة استخدام مدروسة وتهيئة محركات البحث.</p></article>
+      <article class="feature"><div class="num">04</div><h3 data-i18n="choose.f4t">تكاملات</h3><p data-i18n="choose.f4d">APIs مع الهوية والخرائط والبوابات المالية.</p></article>
+      <article class="feature"><div class="num">05</div><h3 data-i18n="choose.f5t">ثقة</h3><p data-i18n="choose.f5d">توثيق، مراقبة، وسجلات تدقيق.</p></article>
+      <article class="feature"><div class="num">06</div><h3 data-i18n="choose.f6t">معايير عالمية</h3><p data-i18n="choose.f6d">أمن وجودة وفق أفضل الممارسات.</p></article>
+    </div>
+  </section>
+
+  <!-- ====== Services ====== -->
+  <section id="services" class="services">
+    <h2 class="sec-h" data-i18n="services.title">خدماتنا</h2>
+    <p class="sec-sub" data-i18n="services.sub">حلول متكاملة من التصميم إلى الإطلاق — بأداء وأمن على مستوى المؤسسات.</p>
+    <div class="grid-3" id="servicesGrid">
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3 data-i18n="srv1.t">استشارات المنتج</h3><p data-i18n="srv1.d">تحليل السوق، خارطة طريق، وملاءمة المنتج للسوق.</p>
+        <div class="chips"><span class="chip">Market Fit</span><span class="chip">Roadmap</span><span class="chip">KPI</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M7 15h3"/></svg></div>
+        <h3 data-i18n="srv2.t">تطوير الواجهات</h3><p data-i18n="srv2.d">React/Next.js، GSAP، WebGL — حركة وأداء.</p>
+        <div class="chips"><span class="chip">Next.js</span><span class="chip">GSAP</span><span class="chip">WebGL</span></div>
+      </article>
+      <article class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 data-i18n="srv3.t">الحوسبة الآمنة</h3><p data-i18n="srv3.d">مصادقة وتشفير وممارسات Zero-Trust.</p>
+        <div class="chips"><span class="chip">OAuth2</span><span class="chip">JWT</span><span class="chip">WAF</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ====== Projects ====== -->
+  <section id="projects" class="projects">
+    <h2 class="sec-h" data-i18n="projects.title">مشاريع مختارة</h2>
+    <p class="sec-sub" data-i18n="projects.sub">واجهات غنية بالحركة وأداء مُحسّن لمحركات البحث.</p>
+    <div class="grid-portfolio" id="portfolio">
+      <article class="project"><div class="shot"></div><div class="meta"><strong>منصّة ذكاء بيانات</strong><span class="tag">Next.js · WebGL</span></div></article>
+      <article class="project"><div class="shot"></div><div class="meta"><strong>لوحة BI حيّة</strong><span class="tag">React · ECharts</span></div></article>
+      <article class="project"><div class="shot"></div><div class="meta"><strong>نظام حجوزات</strong><span class="tag">PWA · Tailwind</span></div></article>
+      <article class="project"><div class="shot"></div><div class="meta"><strong>بوابة دفع</strong><span class="tag">OAuth2 · Audit</span></div></article>
+      <article class="project"><div class="shot"></div><div class="meta"><strong>شبكة IoT</strong><span class="tag">MQTT · Realtime</span></div></article>
+      <article class="project"><div class="shot"></div><div class="meta"><strong>مشهد 3D</strong><span class="tag">Three.js</span></div></article>
+    </div>
+  </section>
+
+  <!-- ====== Tech Stack ====== -->
+  <section id="stack" class="stack">
+    <h2 class="sec-h" data-i18n="stack.title">لغات البرمجة المستخدمة في تصميم الويب</h2>
+    <p class="sec-sub" data-i18n="stack.sub">التقنيات الأكثر استخدامًا لدينا — باختصار.</p>
+    <div class="stack-grid">
+      <div class="group"><h3><span class="tech dot"></span> <span data-i18n="stack.langs">لغات البرمجة</span></h3><div class="tech-list">
+        <span class="tech"><span class="dot"></span>JavaScript</span><span class="tech"><span class="dot"></span>TypeScript</span><span class="tech"><span class="dot"></span>Python</span><span class="tech"><span class="dot"></span>PHP</span><span class="tech"><span class="dot"></span>Java</span></div></div>
+      <div class="group"><h3><span class="tech dot"></span> <span data-i18n="stack.frameworks">إطارات العمل</span></h3><div class="tech-list">
+        <span class="tech"><span class="dot"></span>Next.js</span><span class="tech"><span class="dot"></span>React</span><span class="tech"><span class="dot"></span>Express.js</span><span class="tech"><span class="dot"></span>Django</span><span class="tech"><span class="dot"></span>Laravel</span></div></div>
+      <div class="group"><h3><span class="tech dot"></span> <span data-i18n="stack.databases">قواعد البيانات</span></h3><div class="tech-list">
+        <span class="tech"><span class="dot"></span>PostgreSQL</span><span class="tech"><span class="dot"></span>MySQL</span><span class="tech"><span class="dot"></span>MongoDB</span><span class="tech"><span class="dot"></span>Redis</span></div></div>
+      <div class="group"><h3><span class="tech dot"></span> <span data-i18n="stack.infra">الخوادم والبنية التحتية</span></h3><div class="tech-list">
+        <span class="tech"><span class="dot"></span>Nginx</span><span class="tech"><span class="dot"></span>Docker</span><span class="tech"><span class="dot"></span>Kubernetes</span><span class="tech"><span class="dot"></span>CI/CD</span></div></div>
+      <div class="group"><h3><span class="tech dot"></span> <span data-i18n="stack.security">الأمان</span></h3><div class="tech-list">
+        <span class="tech"><span class="dot"></span>JWT</span><span class="tech"><span class="dot"></span>OAuth2</span><span class="tech"><span class="dot"></span>SSL/TLS</span></div></div>
+    </div>
+  </section>
+
+  <!-- ====== Steps Web ====== -->
+  <section id="webSteps" class="steps">
+    <h2 class="sec-h" data-i18n="wsteps.title">مراحل تصميم موقع إلكتروني ناجح</h2>
+    <p class="sec-sub" data-i18n="wsteps.sub">كل رحلة تبدأ بخطة واضحة.</p>
+    <div class="steps-grid">
+      <div class="step"><div class="no">01</div><h3 data-i18n="wsteps.s1t">تحليل السوق والتخطيط</h3><p data-i18n="wsteps.s1d">فهم الفكرة، المنافسين، والفرص.</p></div>
+      <div class="step"><div class="no">02</div><h3 data-i18n="wsteps.s2t">التصميم والعلامة</h3><p data-i18n="wsteps.s2d">هوية جذابة وتجربة استخدام سلسة.</p></div>
+      <div class="step"><div class="no">03</div><h3 data-i18n="wsteps.s3t">التطوير</h3><p data-i18n="wsteps.s3d">تحويل التصميم إلى منتج متين.</p></div>
+      <div class="step"><div class="no">04</div><h3 data-i18n="wsteps.s4t">المراجعة</h3><p data-i18n="wsteps.s4d">مطابقة نهائية قبل الإطلاق.</p></div>
+      <div class="step"><div class="no">05</div><h3 data-i18n="wsteps.s5t">الاختبار</h3><p data-i18n="wsteps.s5d">وظائف، أمن، أداء.</p></div>
+      <div class="step"><div class="no">06</div><h3 data-i18n="wsteps.s6t">الإطلاق</h3><p data-i18n="wsteps.s6d">إطلاق رسمي ودعم مستمر.</p></div>
+    </div>
+    <div style="text-align:center; margin-top:14px"><a class="btn" href="#contact" data-i18n="wsteps.cta">ابدأ رحلتك معنا</a></div>
+  </section>
+
+  <!-- ====== Steps App ====== -->
+  <section id="appSteps" class="app-steps">
+    <h2 class="sec-h" data-i18n="app.title">مراحل برمجة تطبيق</h2>
+    <p class="sec-sub" data-i18n="app.sub">من المتطلبات حتى النشر.</p>
+    <div class="app-grid">
+      <div class="app"><strong>01 —</strong> <span data-i18n="app.a1">تحليل المتطلبات وMVP</span></div>
+      <div class="app"><strong>02 —</strong> <span data-i18n="app.a2">نمذجة UX/UI</span></div>
+      <div class="app"><strong>03 —</strong> <span data-i18n="app.a3">Backend & DB</span></div>
+      <div class="app"><strong>04 —</strong> <span data-i18n="app.a4">واجهات Flutter/React-Native</span></div>
+      <div class="app"><strong>05 —</strong> <span data-i18n="app.a5">اختبارات شاملة</span></div>
+      <div class="app"><strong>06 —</strong> <span data-i18n="app.a6">نشر وصيانة</span></div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section id="faq" class="faq">
+    <h2 class="sec-h" data-i18n="faq.title">الأسئلة الشائعة</h2>
+    <p class="sec-sub" data-i18n="faq.sub">أهم الأسئلة التي تُحدث فرقًا في قرارك.</p>
+    <div class="faq-wrap">
+      <details class="faq-item"><summary><span class="chev">⌄</span><span data-i18n="faq.q1">مخصّص أم منصة جاهزة؟</span></summary><p data-i18n="faq.a1">المخصّص = أداء وأمان وهوية فريدة وتوسّع أعلى؛ الجاهز أسرع للبدء لكنه أقل مرونة.</p></details>
+      <details class="faq-item"><summary><span class="chev">⌄</span><span data-i18n="faq.q2">المدّة المتوقعة؟</span></summary><p data-i18n="faq.a2">عادة 3–6 أسابيع حسب نطاق المشروع.</p></details>
+      <details class="faq-item"><summary><span class="chev">⌄</span><span data-i18n="faq.q3">هل أستطيع تحديث الموقع؟</span></summary><p data-i18n="faq.a3">نعم—لوحة سهلة ودليل مبسّط.</p></details>
+      <details class="faq-item"><summary><span class="chev">⌄</span><span data-i18n="faq.q4">صيانة بعد الإطلاق؟</span></summary><p data-i18n="faq.a4">خطط صيانة شهرية تشمل المراقبة والتحديثات.</p></details>
+    </div>
+  </section>
+
+  <!-- ====== Team ====== -->
+  <section id="team" class="team">
+    <h2 class="sec-h" data-i18n="team.title">فريقنا</h2>
+    <p class="sec-sub" data-i18n="team.sub">خبرات متكاملة تجمع بين التصميم، التطوير، والبنية التحتية.</p>
+    <div class="team-grid" id="teamGrid">
+      <article class="member"><div style="display:flex; align-items:center; gap:14px"><div class="avatar"></div><div><h4>محمد الشرجبي</h4><div class="role">Founder · Flutter Engineer</div></div></div><p style="margin:10px 0; color:var(--muted)">تطبيقات عالية الجودة بواجهات تفاعلية وحلول أداء واستقرار.</p><div class="skills"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Firebase</span></div><div class="social"><a href="#">𝕏</a><a href="#">in</a><a href="#">GH</a></div></article>
+      <article class="member"><div style="display:flex; align-items:center; gap:14px"><div class="avatar"></div><div><h4>إسحاق قاسم</h4><div class="role">Backend Engineer</div></div></div><p style="margin:10px 0; color:var(--muted)">APIs موثوقة قابلة للتوسع مع أمان متقدم.</p><div class="skills"><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span></div><div class="social"><a href="#">𝕏</a><a href="#">in</a><a href="#">GH</a></div></article>
+      <article class="member"><div style="display:flex; align-items:center; gap:14px"><div class="avatar"></div><div><h4>فاطمة علي</h4><div class="role">UI/UX Designer</div></div></div><p style="margin:10px 0; color:var(--muted)">تصميم يوازن بين الجمال وسهولة الاستخدام وأنيميشن هادف.</p><div class="skills"><span class="chip">Figma</span><span class="chip">Prototyping</span><span class="chip">Motion</span></div><div class="social"><a href="#">●</a><a href="#">in</a><a href="#">Bē</a></div></article>
+    </div>
+  </section>
+
+  <!-- ====== About ====== -->
+  <section id="about" class="about">
+    <h2 class="sec-h" data-i18n="about.title">نبذة عنّا</h2>
+    <p class="sec-sub" data-i18n="about.sub">نبني منتجات تقنية تُرى وتُحس — جمالية الواجهة وقوة البنية.</p>
+    <div class="about-wrap">
+      <div class="panel"><h3 style="margin:0 0 10px" data-i18n="about.mission">رسالتنا</h3><p style="margin:0 0 12px; color:var(--muted)" data-i18n="about.missiond">نحوّل الأفكار إلى منتجات رقمية رشيقة، قابلة للتوسع، وموثوقة الإنتاج.</p><ul class="bullets"><li><span class="dot"></span><div data-i18n="about.b1">تصميم يركز على التجربة—حركة بهدف.</div></li><li><span class="dot"></span><div data-i18n="about.b2">هندسة بالأرقام—قياس قبل الآراء.</div></li><li><span class="dot"></span><div data-i18n="about.b3">أمن افتراضي—الحماية ضمن التصميم.</div></li></ul></div>
+      <div class="panel"><h3 style="margin:0 0 10px" data-i18n="about.values">قيمنا</h3><p style="margin:0; color:var(--muted)" data-i18n="about.valuesd">الشفافية، الجودة، والإبداع الذي يصنع فارقًا ملموسًا.</p><div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px">
+        <div class="stat"><div class="num" data-count="120">120</div><div class="lbl" data-i18n="about.s1">مشروع</div></div>
+        <div class="stat"><div class="num" data-count="99.99">99.99</div><div class="lbl" data-i18n="about.s2">توافرية %</div></div>
+        <div class="stat"><div class="num" data-count="48">48</div><div class="lbl" data-i18n="about.s3">دمج API</div></div>
+        <div class="stat"><div class="num" data-count="14">14</div><div class="lbl" data-i18n="about.s4">شراكات</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ====== Stats ====== -->
+  <section class="stats">
+    <div class="strip">
+      <div class="stat"><div class="num">250</div><div class="lbl" data-i18n="stats.s1">مقياس أداء مُحسّن</div></div>
+      <div class="stat"><div class="num">1.8</div><div class="lbl" data-i18n="stats.s2">ثانية وقت تفاعلي</div></div>
+      <div class="stat"><div class="num">7</div><div class="lbl" data-i18n="stats.s3">مناطق استضافة</div></div>
+      <div class="stat"><div class="num">4.9</div><div class="lbl" data-i18n="stats.s4">رضا العملاء</div></div>
+    </div>
+  </section>
+
+  <!-- ====== Contact ====== -->
+  <section id="contact" class="contact">
+    <h2 class="sec-h" data-i18n="contact.title">تواصل معنا — واحجز عرضًا</h2>
+    <p class="sec-sub" data-i18n="contact.sub">اختر خدمتك ووقتك، أو أرسل رسالة وسنعود لك بسرعة.</p>
+    <div class="contact-wrap">
+      <div class="panel">
+        <h3 style="margin-top:0" data-i18n="contact.form">نموذج تواصل</h3>
+        <form class="form" id="contactForm" onsubmit="return false;">
+          <div class="row"><input id="name" placeholder="الاسم الكامل" required /><input id="email" type="email" placeholder="البريد الإلكتروني" required /></div>
+          <div class="row"><input id="phone" type="tel" placeholder="رقم الجوال (اختياري)" /><select id="service"><option>استشارة منتج</option><option>تطوير واجهات</option><option>هندسة سحابة</option><option>ذكاء تحليلي</option></select></div>
+          <textarea id="message" placeholder="اكتب رسالتك..."></textarea>
+          <div class="submit"><a class="btn" id="sendWhats" data-i18n="contact.whats">إرسال عبر واتساب</a><a class="btn ghost" id="sendMail" data-i18n="contact.mail">إرسال بريد</a></div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top:0" data-i18n="contact.book">حجز موعد</h3>
+        <div class="form"><div class="row"><input id="date" type="date" /><input id="time" type="time" /></div>
+          <select id="bookingService"><option>Demo تقني</option><option>جلسة اكتشاف</option><option>تقييم أداء</option></select>
+          <div class="submit"><a class="btn" id="bookNow" data-i18n="contact.bookcta">احجز الآن</a><a class="btn ghost" href="#home" data-i18n="contact.up">عودة للأعلى</a></div>
+          <p style="color:var(--muted); margin:8px 0 0" data-i18n="contact.note">سنؤكد الموعد عبر واتساب خلال دقائق.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="f-brand"><div class="brand" style="margin-bottom:8px"><i class="logo"></i> <span data-i18n="brand.name">Technovizen</span></div><p style="margin:0; color:#cbe0ff" data-i18n="footer.tag">نبني منتجات تتحدث بالأرقام والتجربة.</p></div>
+      <div><h4 style="margin:0 0 8px" data-i18n="footer.links">روابط</h4><div class="f-links"><a href="#services" data-i18n="nav.services">الخدمات</a><a href="#projects" data-i18n="nav.projects">المشاريع</a><a href="#stack" data-i18n="nav.stack">التقنيات</a><a href="#faq" data-i18n="nav.faq">الأسئلة</a><a href="#team" data-i18n="nav.team">الفريق</a><a href="#about" data-i18n="nav.about">نبذة</a><a href="#contact" data-i18n="nav.contact">تواصل</a></div></div>
+      <div><h4 style="margin:0 0 8px" data-i18n="footer.contact">تواصل</h4><div class="f-links"><a href="mailto:info@technovizen.com">info@technovizen.com</a><a href="tel:+966568767724">+966 56 876 7724</a><span data-i18n="footer.loc">الرياض، السعودية</span></div></div>
+    </div>
+    <div style="margin-top:16px">© <span id="y"></span> Technovizen — <span data-i18n="footer.rights">جميع الحقوق محفوظة.</span></div>
+  </footer>
+
+  <!-- WhatsApp Floating -->
+  <div class="wa" title="تواصل واتساب" style="position:fixed; inset-inline-start:18px; inset-block-end:18px; z-index:120">
+    <a id="waFloat" href="https://wa.me/966568767724" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;box-shadow:0 14px 35px rgba(0,0,0,.35)">💬</a>
+  </div>
+
+  <!-- GSAP (للكشف الحركي) -->
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+  // سنة التذييل
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  /* ===================== Space Starfield (Canvas 2D) ===================== */
+  (()=>{
+    const c=document.getElementById('space'),x=c.getContext('2d');
+    let W,H,stars=[];
+    function resize(){ W=c.width=innerWidth; H=c.height=innerHeight; stars=Array.from({length:Math.min(900, W*H/2500)},()=>({
+      x:Math.random()*W, y:Math.random()*H, z:Math.random()*1+0.2, s:Math.random()*1.2+0.3
+    })); }
+    resize(); addEventListener('resize',resize,{passive:true});
+    let mx=0,my=0; addEventListener('pointermove',e=>{mx=(e.clientX/W-0.5)*2; my=(e.clientY/H-0.5)*2},{passive:true});
+    function tick(){
+      x.clearRect(0,0,W,H);
+      for(const p of stars){
+        p.x+=mx*0.3*p.z; p.y+=my*0.3*p.z;
+        if(p.x<0) p.x+=W; if(p.x>W) p.x-=W; if(p.y<0) p.y+=H; if(p.y>H) p.y-=H;
+        x.globalAlpha=0.5+Math.sin((p.x+p.y)*0.01)*0.25;
+        x.fillStyle='#b8d7ff'; x.fillRect(p.x,p.y,p.s,p.s);
+      }
+      requestAnimationFrame(tick);
+    } tick();
+  })();
+
+  /* ===================== Neural Net + Data Beams (SVG) ===================== */
+  (()=>{
+    const svg = document.getElementById('scene');
+    const rot = document.getElementById('net-rot');
+    // بناء شبكة عصبية حلقية (عُقد + خطوط)
+    const nodes=[]; const R1=120, R2=70, R3=36;
+    function ring(N,R,off){
+      for(let i=0;i<N;i++){
+        const a=i/N*Math.PI*2+off;
+        const x=Math.cos(a)*R, y=Math.sin(a)*R;
+        nodes.push({x,y});
+        const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',3.2);
+        c.setAttribute('fill','#C7E5F2'); c.setAttribute('opacity','.9');
+        rot.appendChild(c);
+      }
+    }
+    ring(22,R1,0.1); ring(14,R2,0.4); ring(8,R3,0.2);
+    // خطوط قصيرة عشوائية
+    for(let i=0;i<60;i++){
+      const a=nodes[Math.floor(Math.random()*nodes.length)];
+      const b=nodes[Math.floor(Math.random()*nodes.length)];
+      const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',a.x); l.setAttribute('y1',a.y);
+      l.setAttribute('x2',b.x); l.setAttribute('y2',b.y);
+      l.setAttribute('stroke','url(#gradBlue)'); l.setAttribute('stroke-opacity','.35'); l.setAttribute('stroke-width','1.5');
+      rot.appendChild(l);
+    }
+    // دوران بسيط للشبكة
+    let a=0; function spin(){ rot.setAttribute('transform',`rotate(${a})`); a+=0.08; requestAnimationFrame(spin) } spin();
+
+    // Packets على المسارات
+    const beams = ['beam1','beam2','beam3'].map(id=>document.getElementById(id));
+    const packets=document.getElementById('packets');
+    function makePacket(color='#fff', r=4){
+      const p=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      p.setAttribute('r',r); p.setAttribute('fill',color); return p;
+    }
+    const movers=[];
+    beams.forEach((path,i)=>{
+      const L = path.getTotalLength();
+      const n = 6 - i*2; // عدد النقاط لكل مسار
+      for(let k=0;k<n;k++){
+        const dot=makePacket(i? '#bfe8ff' : '#eaffff', 3.2);
+        packets.appendChild(dot);
+        movers.push({el:dot, t:Math.random(), v:0.0009 + Math.random()*0.0014, L, path});
+      }
+    });
+    function move(){
+      for(const m of movers){
+        m.t+=m.v; if(m.t>1) m.t-=1;
+        const p = m.path.getPointAtLength(m.t*m.L);
+        m.el.setAttribute('cx', p.x); m.el.setAttribute('cy', p.y + Math.sin((m.t+m.L)*10)*2);
+      }
+      requestAnimationFrame(move);
+    } move();
+
+    // وميض المعادلات
+    document.querySelectorAll('.formula').forEach((el,i)=>{
+      el.style.animation = `floatY ${6+i*0.7}s ease-in-out infinite alternate`;
+    });
+  })();
+
+  /* ===================== Scroll reveals ===================== */
+  try{
+    if(window.ScrollTrigger){ gsap.registerPlugin(ScrollTrigger); }
+    gsap.utils.toArray('#servicesGrid .card').forEach((el, i)=>{ gsap.to(el, { y:0, scale:1, opacity:1, duration:.7, delay:i*0.06, ease:'power2.out', scrollTrigger:{ trigger: el, start:'top 85%' } }); });
+    gsap.utils.toArray('#teamGrid .member').forEach((el, i)=>{ gsap.to(el, { y:0, opacity:1, duration:.7, delay:i*0.06, ease:'power2.out', scrollTrigger:{ trigger: el, start:'top 85%' } }); });
+    gsap.utils.toArray('#portfolio .project').forEach((el,i)=>{ gsap.from(el, { y:22, opacity:0, duration:.7, delay:i*0.06, ease:'power2.out', scrollTrigger:{ trigger: el, start:'top 85%' } }); });
+    gsap.utils.toArray('#stack .group, #faq .faq-item').forEach((el,i)=>{ gsap.from(el, { y:18, opacity:0, duration:.6, delay:i*0.04, ease:'power2.out', scrollTrigger:{ trigger: el, start:'top 88%' } }); });
+  }catch(e){ console.warn(e); }
+
+  /* ===================== WhatsApp & Mail ===================== */
+  const WA_NUMBER = '966568767724';
+  function buildMessage(){
+    const name = document.getElementById('name').value || '';
+    const email = document.getElementById('email').value || '';
+    const phone = document.getElementById('phone').value || '';
+    const service = document.getElementById('service').value || '';
+    const message = document.getElementById('message').value || '';
+    return `مرحباً، اسمي ${name}\nالخدمة: ${service}\nالبريد: ${email}\nالجوال: ${phone}\n\nالرسالة:\n${message}`;
+  }
+  document.getElementById('sendWhats').addEventListener('click', ()=>{ const text = encodeURIComponent(buildMessage()); window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank'); });
+  document.getElementById('sendMail').addEventListener('click', ()=>{ const subject = encodeURIComponent('تواصل من الموقع'); const body = encodeURIComponent(buildMessage()); window.location.href = `mailto:info@technovizen.com?subject=${subject}&body=${body}`; });
+  document.getElementById('bookNow').addEventListener('click', ()=>{
+    const d = document.getElementById('date').value; const t = document.getElementById('time').value; const s = document.getElementById('bookingService').value;
+    const msg = encodeURIComponent(`حجز موعد: ${s}\nالتاريخ: ${d || '—'}\nالوقت: ${t || '—'}`); window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+  });
+
+  /* ===================== i18n ===================== */
+  const i18n = {
+    ar: {
+      'brand.name':'Technovizen',
+      'nav.services':'الخدمات','nav.projects':'المشاريع','nav.stack':'التقنيات','nav.faq':'الأسئلة','nav.team':'الفريق','nav.about':'نبذة','nav.contact':'تواصل وحجز',
+      'hero.title':'روبوتات تتناقل البيانات عبر شبكة عصبية كونية',
+      'hero.lead':'تبادل آمن وفوري للبيانات بين وكلاء ذكيين—ألوان Technovizen وخلفية فضائية.',
+      'hero.ctaPrimary':'استعرض أعمالنا','hero.ctaSecondary':'خدماتنا',
+      'why.title':'لماذا أحتاج إلى موقع إلكتروني؟','why.sub':'استثمار ذكي يعزز نمو نشاطك التجاري ويمنحك فرصًا أكبر للتطور.',
+      'why.b1':'انتشار أوسع — وصول لجمهور يتجاوز الحدود.','why.b2':'جذب العملاء — مضاعفة العملاء المحتملين.','why.b3':'مواكبة التطور — تحديثات مستمرة.','why.b4':'تسويق فعّال — قنوات متعددة بتكلفة أقل.','why.b5':'تعدد اللغات — أسواق وشرائح جديدة.','why.b6':'تعزيز الثقة — صورة احترافية قوية.',
+      'why.ctaTitle':'جاهز لبدء مشروعك؟','why.ctaSub':'تواصل لنقدّم تصورًا أوليًا مجانيًا.','why.ctaBtn':'ابدأ الآن',
+      'choose.title':'6 أسباب لاختيارنا','choose.sub':'أداء وجودة وتجربة تفوق التوقع.',
+      'choose.f1t':'فريق محترف','choose.f1d':'خبرة عميقة ولمسة حركية راقية.',
+      'choose.f2t':'حلول متكاملة','choose.f2d':'مواقع ومتاجر وتطبيقات متصلة.',
+      'choose.f3t':'أداء وسيو','choose.f3d':'سرعة وتجربة وسيو متقدّم.',
+      'choose.f4t':'تكاملات','choose.f4d':'ربط سهل مع أنظمة الطرف الثالث.',
+      'choose.f5t':'ثقة','choose.f5d':'توثيق ومراقبة وتتبّع.',
+      'choose.f6t':'معايير عالمية','choose.f6d':'أفضل الممارسات أمنًا وجودة.',
+      'services.title':'خدماتنا','services.sub':'حلول متكاملة من التصميم إلى الإطلاق.',
+      'srv1.t':'استشارات المنتج','srv1.d':'تحليل سوق وخارطة طريق واضحة.',
+      'srv2.t':'تطوير الواجهات','srv2.d':'React/Next.js وحركة WebGL.',
+      'srv3.t':'الحوسبة الآمنة','srv3.d':'مصادقة وتشفير وZero-Trust.',
+      'projects.title':'مشاريع مختارة','projects.sub':'حركة غنية وأداء مُحسّن.',
+      'stack.title':'لغات البرمجة المستخدمة في تصميم الويب','stack.sub':'التقنيات الأكثر استخدامًا — باختصار.','stack.langs':'لغات البرمجة','stack.frameworks':'إطارات العمل','stack.databases':'قواعد البيانات','stack.infra':'الخوادم والبنية التحتية','stack.security':'الأمان',
+      'wsteps.title':'مراحل تصميم موقع إلكتروني ناجح','wsteps.sub':'كل رحلة تبدأ بخطة واضحة.','wsteps.s1t':'تحليل السوق والتخطيط','wsteps.s1d':'فهم الفكرة والمنافسين.','wsteps.s2t':'التصميم والعلامة','wsteps.s2d':'هوية وتجربة مستخدم.','wsteps.s3t':'التطوير','wsteps.s3d':'تحويل التصميم إلى منتج.','wsteps.s4t':'المراجعة','wsteps.s4d':'مطابقة نهائية.','wsteps.s5t':'الاختبار','wsteps.s5d':'وظائف وأمن وأداء.','wsteps.s6t':'الإطلاق','wsteps.s6d':'دعم واستمرارية.','wsteps.cta':'ابدأ رحلتك معنا',
+      'app.title':'مراحل برمجة تطبيق','app.sub':'من المتطلبات إلى النشر.','app.a1':'تحليل المتطلبات وMVP','app.a2':'نمذجة UX/UI','app.a3':'Backend & DB','app.a4':'Flutter/React-Native','app.a5':'اختبارات شاملة','app.a6':'نشر وصيانة',
+      'faq.title':'الأسئلة الشائعة','faq.sub':'أهم الإجابات لاتخاذ القرار.','faq.q1':'مخصّص أم منصة جاهزة؟','faq.a1':'المخصّص أفضل أداءً وأمانًا وهويةً.','faq.q2':'المدّة المتوقعة؟','faq.a2':'3–6 أسابيع عادة.','faq.q3':'هل أستطيع تحديث الموقع؟','faq.a3':'نعم، لوحة سهلة.','faq.q4':'صيانة بعد الإطلاق؟','faq.a4':'خطط شهرية للمراقبة والتحديثات.',
+      'team.title':'فريقنا','team.sub':'خبرات متكاملة.',
+      'about.title':'نبذة عنّا','about.sub':'جمالية الواجهة وقوة البنية.','about.mission':'رسالتنا','about.missiond':'نحوّل الأفكار إلى منتجات جاهزة للإنتاج.','about.values':'قيمنا','about.valuesd':'الشفافية والجودة والإبداع.','about.b1':'حركة بهدف.','about.b2':'هندسة بالأرقام.','about.b3':'أمن ضمن التصميم.',
+      'stats.s1':'مقياس أداء مُحسّن','stats.s2':'ثانية وقت تفاعلي','stats.s3':'مناطق استضافة','stats.s4':'رضا العملاء',
+      'contact.title':'تواصل وحجز','contact.sub':'اختر خدمة أو أرسل رسالة.','contact.form':'نموذج تواصل','contact.whats':'إرسال واتساب','contact.mail':'إرسال بريد','contact.book':'حجز موعد','contact.bookcta':'احجز الآن','contact.up':'عودة للأعلى','contact.note':'سنؤكد عبر واتساب.',
+      'footer.tag':'نبني منتجات تتحدث بالأرقام والتجربة.','footer.links':'روابط','footer.contact':'تواصل','footer.loc':'الرياض، السعودية','footer.rights':'جميع الحقوق محفوظة.'
+    },
+    en: {
+      'brand.name':'Technovizen',
+      'nav.services':'Services','nav.projects':'Projects','nav.stack':'Tech Stack','nav.faq':'FAQ','nav.team':'Team','nav.about':'About','nav.contact':'Contact & Booking',
+      'hero.title':'Robots exchanging data across a cosmic neural network',
+      'hero.lead':'A dazzling opener: secure, instant data exchange between intelligent agents—Technovizen colors over a space horizon.',
+      'hero.ctaPrimary':'See Our Work','hero.ctaSecondary':'Our Services',
+      'why.title':'Why Do I Need a Website?','why.sub':'A smart investment that fuels growth and unlocks opportunities.',
+      'why.b1':'Wider reach beyond geography.','why.b2':'More qualified leads.','why.b3':'Stay current with the market.','why.b4':'Effective multi-channel marketing.','why.b5':'Multi-language reach.','why.b6':'Build trust with a pro image.',
+      'why.ctaTitle':'Ready to start?','why.ctaSub':'Get a free first concept.','why.ctaBtn':'Start now',
+      'choose.title':'6 Reasons to Choose Us','choose.sub':'Performance, quality, and experience.',
+      'choose.f1t':'Expert Team','choose.f1d':'Deep experience with tasteful motion.','choose.f2t':'Integrated Solutions','choose.f2d':'Web, commerce, and apps.','choose.f3t':'Performance & SEO','choose.f3d':'Speed, UX, search-ready.','choose.f4t':'Integrations','choose.f4d':'Easy third-party links.','choose.f5t':'Trust','choose.f5d':'Logging, monitoring, audits.','choose.f6t':'Global Standards','choose.f6d':'Best practices for security and quality.',
+      'services.title':'Our Services','services.sub':'End-to-end from design to launch.',
+      'srv1.t':'Product Consulting','srv1.d':'Market analysis and roadmap.',
+      'srv2.t':'Front-end Development','srv2.d':'React/Next.js with WebGL motion.',
+      'srv3.t':'Secure Computing','srv3.d':'Auth, encryption, and Zero-Trust.',
+      'projects.title':'Selected Projects','projects.sub':'Motion-rich front-ends with SEO-optimized performance.',
+      'stack.title':'Web Tech Stack','stack.sub':'Our most used technologies—at a glance.','stack.langs':'Programming Languages','stack.frameworks':'Frameworks','stack.databases':'Databases','stack.infra':'Servers & Infrastructure','stack.security':'Security',
+      'wsteps.title':'Website Design Stages','wsteps.sub':'Every journey starts with a clear plan.','wsteps.s1t':'Market Analysis & Planning','wsteps.s1d':'Understand idea and competitors.','wsteps.s2t':'Design & Branding','wsteps.s2d':'Identity and UX.','wsteps.s3t':'Development','wsteps.s3d':'Turn designs into a product.','wsteps.s4t':'Review','wsteps.s4d':'Final alignment.','wsteps.s5t':'Testing','wsteps.s5d':'Function, security, performance.','wsteps.s6t':'Launch','wsteps.s6d':'Support & updates.','wsteps.cta':'Start your journey',
+      'app.title':'App Development Stages','app.sub':'From requirements to stores.','app.a1':'Requirements & MVP','app.a2':'UX/UI prototyping','app.a3':'Backend & DB','app.a4':'Flutter/React-Native','app.a5':'Comprehensive testing','app.a6':'Release & maintenance',
+      'faq.title':'Frequently Asked Questions','faq.sub':'Key answers that help you decide.','faq.q1':'Custom vs WordPress?','faq.a1':'Custom wins on performance, security, and identity.','faq.q2':'How long?','faq.a2':'Typically 3–6 weeks.','faq.q3':'Can I update it?','faq.a3':'Yes—easy CMS.','faq.q4':'Maintenance?','faq.a4':'Monthly plans with monitoring and updates.',
+      'team.title':'Our Team','team.sub':'Cross-disciplinary expertise.',
+      'about.title':'About Us','about.sub':'We build products you can see and feel.','about.mission':'Our Mission','about.missiond':'Turn ideas into scalable, production-ready products.','about.values':'Our Values','about.valuesd':'Transparency, quality, meaningful creativity.','about.b1':'Motion with purpose.','about.b2':'Engineering by metrics.','about.b3':'Security by default.',
+      'stats.s1':'Improved performance metric','stats.s2':'Seconds to interactive','stats.s3':'Hosting regions','stats.s4':'Customer rating',
+      'contact.title':'Contact & Booking','contact.sub':'Pick a service and time or send a message.','contact.form':'Contact Form','contact.whats':'Send via WhatsApp','contact.mail':'Send Email','contact.book':'Book a Time','contact.bookcta':'Book now','contact.up':'Back to top','contact.note':'We’ll confirm on WhatsApp.',
+      'footer.tag':'We build products that speak through numbers and experience.','footer.links':'Links','footer.contact':'Contact','footer.loc':'Riyadh, Saudi Arabia','footer.rights':'All rights reserved.'
+    }
+  };
+  const toggleBtn = document.getElementById('langToggle');
+  let lang = 'ar';
+  function applyLang(){
+    const dict = i18n[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    toggleBtn.textContent = lang === 'ar' ? 'EN' : 'AR';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n'); if(dict[key]) el.textContent = dict[key];
+    });
+  }
+  toggleBtn.addEventListener('click', ()=>{ lang = (lang === 'ar' ? 'en' : 'ar'); applyLang(); });
+  applyLang();
+  </script>
+</body>
+</html>

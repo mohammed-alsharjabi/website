@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تكنوفيزن | مواقع وتطبيقات باحتراف وتسليم سريع</title>
+  <meta name="description" content="خدمات تصميم وتطوير المواقع والتطبيقات باحتراف، تسليم سريع وسعر مناسب. تكنوفيزن: فريق تقني يبني لك حضورك الرقمي من الصفر حتى الإطلاق." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="تكنوفيزن | مواقع وتطبيقات باحتراف" />
+  <meta property="og:description" content="من الفكرة إلى الإطلاق: موقع أو تطبيق باحتراف، تسليم سريع وسعر يناسبك." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.technovizen.com/" />
+  <meta name="theme-color" content="#217DFC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:   #217DFC;  /* الأزرق الأساسي */
+      --accent:  #3AE2C4;  /* المينت/السيان */
+      --blue-200:#81B0E2;  /* تدرّج فاتح للأزرق */
+      --cyan-100:#C7E5F2;  /* تدرّج فاتح للمينت */
+      --white:   #FFFFFF;  /* خلفية */
+      --ink:     #0b1b33;  /* نص داكن */
+      --muted:   #5b6b83;  /* نص ثانوي */
+      --bg:      #0d1220;  /* خلفية داكنة أنيقة */
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Cairo", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Kufi Arabic", sans-serif;
+      color:var(--white); background:radial-gradient(1200px 600px at 70% -10%, rgba(58,226,196,.2), transparent 60%), linear-gradient(180deg, #0b1426 0%, #0a1020 100%);
+    }
+
+    /* ====== Utilities ====== */
+    .container{width:min(1100px, 92%); margin-inline:auto}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.2rem; border-radius:14px; border:1px solid transparent; font-weight:700; text-decoration:none; transition:all .25s ease}
+    .btn.primary{background:linear-gradient(90deg, var(--brand), var(--blue-200)); color:#fff; box-shadow:0 10px 24px rgba(33,125,252,.35)}
+    .btn.primary:hover{transform:translateY(-2px); filter:saturate(1.15)}
+    .btn.ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.2)}
+    .btn.ghost:hover{background:rgba(255,255,255,.06)}
+    .tag{display:inline-block; padding:.35rem .7rem; border-radius:999px; font-size:.85rem; background:rgba(58,226,196,.14); color:#bffff2; border:1px solid rgba(58,226,196,.4)}
+
+    header{position:sticky; top:0; z-index:100; backdrop-filter:saturate(1.1) blur(8px); background:linear-gradient(180deg, rgba(10,16,32,.75), rgba(10,16,32,.25)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:10px 0}
+    .brand{display:flex; align-items:center; gap:.8rem}
+    .brand img{width:42px; height:42px; object-fit:contain; filter:drop-shadow(0 2px 8px rgba(58,226,196,.35))}
+    .brand .t{font-weight:800; letter-spacing:.5px}
+    .nav .actions{display:flex; gap:.6rem}
+
+    /* ====== Hero ====== */
+    .hero{position:relative; overflow:hidden}
+    .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:2rem; align-items:center; padding:72px 0}
+
+    .headline{font-size:clamp(28px, 5vw, 46px); line-height:1.15; font-weight:800; margin:0 0 16px}
+    .lead{color:#E6F6FF; opacity:.9; font-size:clamp(16px, 2vw, 18px); margin:0 0 26px}
+
+    .badges{display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:14px}
+
+    /* orbit dots background */
+    .orbital{position:absolute; inset:0; pointer-events:none}
+    .orbital canvas{position:absolute; inset:0; width:100%; height:100%}
+
+    /* ====== Features ====== */
+    .features{padding:28px 0 10px}
+    .grid-3{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px; min-height:160px; position:relative; overflow:hidden}
+    .card h3{margin:0 0 .4rem; font-size:1.1rem}
+    .card p{margin:0; color:#D8E8FF; opacity:.9; line-height:1.8}
+    .card:after{content:""; position:absolute; inset:auto auto -30% -30%; width:200px; height:200px; background:radial-gradient(closest-side, rgba(58,226,196,.18), transparent); filter:blur(10px)}
+
+    /* ====== Offer ====== */
+    .offer{margin-top:24px; padding:20px; border-radius:20px; background:linear-gradient(90deg, rgba(33,125,252,.18), rgba(58,226,196,.18)); border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .offer h4{margin:0; font-size:1.1rem}
+    .price{font-weight:800; font-size:1.3rem; background:linear-gradient(90deg, #fff, #bfe2ff); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+    /* ====== Footer / Contact ====== */
+    footer{margin:38px 0 26px; color:#bcd1ff}
+    .contact{display:flex; gap:.6rem; flex-wrap:wrap}
+
+    /* ====== Responsive ====== */
+    @media (max-width: 920px){
+      .hero .grid{grid-template-columns:1fr; padding:48px 0}
+      .features .grid-3{grid-template-columns:1fr}
+      .brand img{width:36px; height:36px}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Technovizen",
+    "url": "https://www.technovizen.com/",
+    "logo": "https://www.technovizen.com/logo.png",
+    "sameAs": ["https://www.instagram.com/technovizen"],
+    "contactPoint": [{"@type":"ContactPoint","telephone":"+966568767724","contactType":"sales"}]
+  }
+  </script>
+</head>
+<body>
+  <!-- ========= Header ========= -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <!-- استبدل المسار أدناه بصورة شعارك الفعلية -->
+        <img src="site_logo.webp" alt="شعار تكنوفيزن" onerror="this.style.display='none'" />
+        <div class="t">تكنوفيزن | Technovizen</div>
+      </div>
+      <div class="actions">
+        <a class="btn ghost" href="#features">الخدمات</a>
+        <a class="btn primary" href="#cta">اطلب عرضك الآن</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========= Hero ========= -->
+  <section class="hero">
+    <div class="orbital"><canvas id="stars"></canvas></div>
+    <div class="container grid">
+      <div>
+        <div class="badges">
+          <span class="tag">تسليم سريع</span>
+          <span class="tag">سعر مناسب</span>
+          <span class="tag">جودة مضمونة</span>
+        </div>
+        <h1 class="headline">مواقع وتطبيقات تُنجَز بسرعة—وتُبهر جمهورك</h1>
+        <p class="lead">من الفكرة حتى الإطلاق: نبني لك موقعًا أو تطبيقًا احترافيًا **جاهز للتسليم** خلال وقت قصير وبسعر يناسبك، مع كتابة نظيفة وتحسين SEO وتجربة مستخدم حديثة.</p>
+        <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+          <a class="btn primary" href="https://wa.me/966568767724?text=مرحبا%20تكنوفيزن،%20أرغب%20بعرض%20سعر%20لموقع/تطبيق" target="_blank" rel="noopener" id="cta">تواصل واتساب</a>
+          <a class="btn ghost" href="tel:+966568767724">اتصل الآن</a>
+        </div>
+      </div>
+      <div>
+        <!-- عرض بسيط للعرض السريع -->
+        <div class="offer">
+          <h4>عرض تصميم موقع احترافي + لوحة تحكم + استضافة ودومين سنة</h4>
+          <div class="price">فقط 1990 ريال (بدلًا من 3900)</div>
+        </div>
+        <div style="margin-top:14px; font-size:.95rem; color:#cfe6ff">يشمل: صفحات أساسية، تهيئة SEO، سرعة عالية، دعم فني أول شهر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= Features ========= -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="grid-3">
+        <article class="card">
+          <h3>من الفكرة إلى التسليم</h3>
+          <p>تحليل سريع للاحتياج، تصميم واجهات جذابة، وبرمجة نظيفة قابلة للتوسّع، ثم تسليم جاهز للنشر.</p>
+        </article>
+        <article class="card">
+          <h3>أداء وسرعة + SEO</h3>
+          <p>هيكلة سليمة للعناوين والميتا، صور مضغوطة، وأفضل ممارسات الأداء لتصدر نتائج البحث.</p>
+        </article>
+        <article class="card">
+          <h3>دعم ومرونة</h3>
+          <p>خيارات تطوير لاحقة وتكاملات (دفع، خرائط، تحليلات)، مع دعم فني يضمن استمرار نجاحك.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= Footer ========= -->
+  <footer class="container">
+    <div class="contact">
+      <a class="btn ghost" href="mailto:hello@technovizen.com">hello@technovizen.com</a>
+      <a class="btn ghost" href="https://www.technovizen.com/" target="_blank" rel="noopener">الموقع الرسمي</a>
+      <a class="btn primary" href="https://wa.me/966568767724?text=أرغب%20في%20بدء%20مشروع%20جديد" target="_blank" rel="noopener">ابدأ مشروعك الآن</a>
+    </div>
+    <div style="margin-top:10px; font-size:.9rem; color:#90a7d6">© جميع الحقوق محفوظة تكنوفيزن — Technovizen</div>
+  </footer>
+
+  <script>
+    // نجوم/جسيمات بسيطة تعطي عمق بصري للقسم العلوي
+    const cvs = document.getElementById('stars');
+    const ctx = cvs.getContext('2d');
+    let w, h, particles;
+
+    function resize(){
+      w = cvs.width = window.innerWidth; h = cvs.height = Math.max(420, window.innerHeight * 0.72);
+      particles = Array.from({length: Math.min(150, Math.floor(w/10))}, () => ({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.8 + .3,
+        s: Math.random()*0.6 + 0.2,
+        dx: (Math.random()-.5)*0.3,
+        dy: (Math.random()-.5)*0.3
+      }));
+    }
+
+    function step(){
+      ctx.clearRect(0,0,w,h);
+      const grad = ctx.createLinearGradient(0,0,0,h);
+      grad.addColorStop(0,'rgba(33,125,252,0.10)');
+      grad.addColorStop(1,'rgba(58,226,196,0.06)');
+      ctx.fillStyle = grad; ctx.fillRect(0,0,w,h);
+
+      for(const p of particles){
+        p.x += p.dx; p.y += p.dy;
+        if(p.x<0) p.x=w; if(p.x>w) p.x=0; if(p.y<0) p.y=h; if(p.y>h) p.y=0;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(200, 245, 255, .85)'; ctx.fill();
+        // توهج
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r*2.4, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(58,226,196,.08)'; ctx.fill();
+      }
+      requestAnimationFrame(step);
+    }
+
+    window.addEventListener('resize', resize);
+    resize(); step();
+  </script>
+</body>
+</html>

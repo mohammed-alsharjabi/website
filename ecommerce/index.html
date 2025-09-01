@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>متجر هدايا — سلايدر وكروت دقيقة (Mobile‑First)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Palette (فاتح ومناسب للمتاجر) */
+      --primary:#4bb4be; /* Primary */
+      --secondary:#37b0c1; /* Secondary */
+      --tertiary:#62bdbf; /* Tertiary */
+      --accent:#3585b5; /* Accent */
+      --light:#bbe0e3; /* Light */
+      --bg:#ffffff; /* خلفية فاتحة */
+      --surface:#f8fbfc; /* أسطح فاتحة */
+      --line:#e6eef0; /* حدود ناعمة */
+      --text:#0f172a; /* نص أسود مزرق واضح */
+      --muted:#64748b; /* نص ثانوي */
+      --shadow:0 10px 28px rgba(17,24,39,.08);
+      --radius:16px;
+      --container:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:"Cairo",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .container{max-width:var(--container);margin-inline:auto;padding-inline:clamp(14px,3vw,22px)}
+    .visually-hidden{position:absolute!important;clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;width:1px;overflow:hidden;white-space:nowrap}
+
+    /* Header */
+    header{padding:18px 0}
+    .brand{font-weight:700;font-size:clamp(18px,2.4vw,22px)}
+    .cart{font-size:14px;color:var(--muted)}
+
+    /* ===== Slider (scroll-snap — Mobile‑First) ===== */
+    .slider-wrap{position:relative}
+    .slider{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:4px}
+    .slider::-webkit-scrollbar{height:8px}
+    .slider::-webkit-scrollbar-thumb{background:#d7e3e6;border-radius:999px}
+
+    .slide{scroll-snap-align:center;flex:0 0 100%;
+      border:1px solid var(--line);border-radius:calc(var(--radius) + 4px);background:var(--surface);
+      box-shadow:var(--shadow);
+      overflow:hidden;position:relative;
+      aspect-ratio:16/9;min-height:clamp(180px,32vw,360px);
+      display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:clamp(12px,2.5vw,22px)}
+    @media (max-width: 900px){.slide{grid-template-columns:1fr}}
+
+    .visual{height:100%;border-radius:calc(var(--radius) + 2px);border:1px solid var(--line);position:relative;overflow:hidden}
+    .visual::before{content:"";position:absolute;inset:-20%;background:radial-gradient(48% 48% at 60% 30%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%),
+      linear-gradient(135deg,var(--primary),var(--secondary),var(--accent));opacity:.9}
+    .visual::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.25) 0 8px,transparent 8px 16px);opacity:.15;mix-blend:overlay}
+    .visual:hover{transform:translateY(-4px);transition:transform .3s ease}
+
+    .slide h2{margin:0 0 6px;font-size:clamp(18px,2.6vw,26px)}
+    .chip{letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-size:12px}
+    .btn{appearance:none;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer}
+    .btn-main{background:var(--primary);border-color:var(--primary);color:#fff}
+    .btn-ghost{background:#fff}
+
+    .dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+    .dot{height:6px;width:22px;border-radius:999px;background:#d7e3e6}
+    .dot.active{background:var(--accent);width:38px}
+
+    /* ===== Grid (مقاسات دقيقة) ===== */
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+    @media (min-width:768px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media (min-width:1120px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+    .card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden;box-shadow:var(--shadow);
+      transform:translateX(50px);opacity:0;transition:transform .6s ease,opacity .6s ease}
+    .card.show{transform:none;opacity:1}
+    .thumb{aspect-ratio:1/1;background:linear-gradient(135deg,var(--light),var(--tertiary),var(--primary));border-bottom:1px solid var(--line)}
+    .content{padding:12px}
+    .title{margin:0 0 2px;font-weight:700;font-size:16px;line-height:1.25}
+    .price{font-weight:700;color:#0b3b44}
+    .badge{position:absolute;bottom:10px;inset-inline-end:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:11px;color:var(--muted);opacity:0;transform:translateY(8px);transition:all .3s}
+    .card:hover .badge{opacity:1;transform:translateY(0)}
+
+    /* ===== Bottom Sheet (تفاصيل نفس الصفحة) ===== */
+    .sheet{position:fixed;inset:0;z-index:60;pointer-events:none}
+    .sheet .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .35s}
+    .sheet .panel{position:absolute;inset-inline:0;bottom:0;background:#fff;color:var(--text);border-top-left-radius:18px;border-top-right-radius:18px;border:1px solid var(--line);transform:translateY(100%);
+      transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 -20px 40px rgba(0,0,0,.12);max-height:82vh;overflow:auto;padding:18px}
+    .sheet.open{pointer-events:auto}
+    .sheet.open .backdrop{opacity:1}
+    .sheet.open .panel{transform:translateY(0)}
+
+    /* Helper */
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header class="container" aria-label="رأس الصفحة">
+    <div class="row" style="align-items:center;justify-content:space-between">
+      <div class="brand">متجر هدايا</div>
+      <div class="cart">العربة: <span id="cartCount">0</span> منتج</div>
+    </div>
+  </header>
+
+  <!-- ===== Slider ===== -->
+  <section class="container" aria-label="عروض مميزة">
+    <div class="slider-wrap">
+      <div id="slider" class="slider" tabindex="0" aria-roledescription="carousel" aria-label="السلايدر">
+        <!-- يتم الحقن نصيًا -->
+      </div>
+      <div id="dots" class="dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ===== Grid ===== -->
+  <section class="container" style="padding:18px 0 28px" aria-label="المنتجات">
+    <div id="grid" class="grid"><!-- يتم الحقن --></div>
+  </section>
+
+  <!-- ===== Bottom Sheet ===== -->
+  <div id="sheet" class="sheet" aria-hidden="true">
+    <div class="backdrop" role="button" aria-label="إغلاق"></div>
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <button id="closeSheet" class="btn btn-ghost" style="position:absolute;left:14px;top:14px">إغلاق</button>
+      <div id="sheetMedia" class="thumb" style="border-radius:12px;margin-bottom:10px"></div>
+      <h3 id="sheetTitle" class="title" style="font-size:18px"></h3>
+      <div id="sheetCat" class="chip" style="margin-bottom:8px"></div>
+      <p id="sheetDesc" style="color:var(--muted);margin:0 0 10px"></p>
+      <div class="row" style="align-items:center;justify-content:space-between">
+        <div id="sheetPrice" class="price"></div>
+        <button id="sheetAdd" class="btn btn-main">إضافة للسلة</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // بيانات افتراضية — تُستبدل لاحقًا ببيانات المتجر
+    const PRODUCTS = [
+      {id:1,name:"Rose Gift Box",category:"Flowers",price:129,desc:"تنسيق ورد فاخر مع كرت معايدة.",grad:"linear-gradient(135deg,var(--primary),var(--secondary),var(--accent))"},
+      {id:2,name:"Chocolate Harmony",category:"Chocolates",price:159,desc:"شوكولاتة مختارة بعناية داخل علبة مخملية.",grad:"linear-gradient(135deg,var(--light),var(--tertiary),var(--accent))"},
+      {id:3,name:"Candle & Bloom",category:"Aromas",price:99,desc:"شمعة مصبوبة يدويًا مع زهور محفوظة.",grad:"linear-gradient(135deg,var(--accent),var(--primary),var(--light))"},
+      {id:4,name:"Luxury Perfume Set",category:"Fragrance",price:229,desc:"باقة عطور فاخرة للجنسين مع عبوة سفر.",grad:"linear-gradient(135deg,var(--secondary),var(--accent),var(--tertiary))"},
+      {id:5,name:"Gold Letter Bracelet",category:"Jewelry",price:179,desc:"سوار بحرف مخصص مع كيس مخملي.",grad:"linear-gradient(135deg,var(--tertiary),var(--primary),var(--light))"},
+      {id:6,name:"Coffee Lover Kit",category:"Lifestyle",price:149,desc:"حبوب مختصة مع كوب مصمم.",grad:"linear-gradient(135deg,var(--primary),var(--light))"},
+    ];
+
+    /* ===== Cart ===== */
+    const cart = new Map();
+    const cartCount = document.getElementById('cartCount');
+    function addToCart(id){cart.set(id,(cart.get(id)||0)+1);cartCount.textContent=[...cart.values()].reduce((a,b)=>a+b,0)}
+
+    /* ===== Build Slider (scroll‑snap) ===== */
+    const slider = document.getElementById('slider');
+    const dots = document.getElementById('dots');
+
+    slider.innerHTML = PRODUCTS.map((p,i)=>
+      `<article class="slide" aria-label="${p.name}">
+        <div class="visual" style="background:${p.grad}"></div>
+        <div>
+          <h2>${p.name}</h2>
+          <div class="chip" style="margin-bottom:10px">${p.category}</div>
+          <div class="row">
+            <button class="btn btn-main" data-add="${p.id}">إضافة للسلة</button>
+            <button class="btn btn-ghost" data-open="${p.id}">تفاصيل سريعة</button>
+          </div>
+        </div>
+      </article>`
+    ).join('');
+
+    dots.innerHTML = PRODUCTS.map((_,i)=>`<button class="dot ${i===0?'active':''}" data-dot="${i}"></button>`).join('');
+
+    // تحديث النقاط عند التمرير
+    function updateDots(){
+      const cardWidth = slider.querySelector('.slide').getBoundingClientRect().width + 12; // 12 gap
+      const idx = Math.round(slider.scrollLeft / cardWidth);
+      [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===idx));
+    }
+    slider.addEventListener('scroll',()=>{window.requestAnimationFrame(updateDots)});
+    dots.addEventListener('click',e=>{const b=e.target.closest('[data-dot]');if(!b) return; slider.scrollTo({left:(+b.dataset.dot)*(slider.querySelector('.slide').clientWidth+12),behavior:'smooth'});});
+
+    /* ===== Grid (مقاسات دقيقة + دخول من اليمين) ===== */
+    const grid = document.getElementById('grid');
+    grid.innerHTML = PRODUCTS.map(p=>
+      `<article class="card" data-card data-id="${p.id}" aria-label="${p.name}">
+        <div class="thumb" style="background:${p.grad}"></div>
+        <div class="content">
+          <div class="row" style="align-items:center;justify-content:space-between">
+            <h3 class="title">${p.name}</h3>
+            <div class="price">${p.price} ر.س</div>
+          </div>
+          <div class="chip">${p.category}</div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn btn-main" data-add="${p.id}">إضافة</button>
+            <button class="btn" data-open="${p.id}">عرض التفاصيل</button>
+          </div>
+        </div>
+        <div class="badge">غير تقليدي</div>
+      </article>`
+    ).join('');
+
+    const cards=[...document.querySelectorAll('[data-card]')];
+    const io=new IntersectionObserver((ents)=>{
+      ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('show');io.unobserve(en.target)}})
+    },{threshold:.22});
+    cards.forEach((c,i)=>{c.style.transitionDelay=(i*60)+'ms';io.observe(c)});
+
+    /* ===== Bottom Sheet (تفاصيل نفس الصفحة) ===== */
+    const sheet = document.getElementById('sheet');
+    const closeSheetBtn = document.getElementById('closeSheet');
+    const sheetMedia = document.getElementById('sheetMedia');
+    const sheetTitle = document.getElementById('sheetTitle');
+    const sheetCat = document.getElementById('sheetCat');
+    const sheetDesc = document.getElementById('sheetDesc');
+    const sheetPrice = document.getElementById('sheetPrice');
+    const sheetAdd = document.getElementById('sheetAdd');
+
+    function openSheet(id){
+      const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+      sheetMedia.style.background = p.grad;
+      sheetTitle.textContent = p.name;
+      sheetCat.textContent = p.category;
+      sheetDesc.textContent = p.desc;
+      sheetPrice.textContent = p.price + ' ر.س';
+      sheetAdd.onclick = ()=> addToCart(p.id);
+      sheet.classList.add('open');
+      sheet.setAttribute('aria-hidden','false');
+    }
+    function closeSheet(){sheet.classList.remove('open');sheet.setAttribute('aria-hidden','true')}
+    closeSheetBtn.addEventListener('click',closeSheet);
+    sheet.querySelector('.backdrop').addEventListener('click',closeSheet);
+
+    document.body.addEventListener('click',e=>{
+      const addBtn = e.target.closest('[data-add]');
+      if(addBtn) addToCart(+addBtn.dataset.add);
+      const openBtn = e.target.closest('[data-open]');
+      if(openBtn) openSheet(+openBtn.dataset.open);
+    });
+  </script>
+</body>
+</html>

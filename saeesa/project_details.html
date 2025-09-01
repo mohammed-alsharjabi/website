@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>تفاصيل المشروع — شركة تقنية</title>
+  <meta name="description" content="تفاصيل مشروع تقني: نظرة عامة، التحديات والحلول، النتائج، المعرض، التقنيات المستخدمة، وروابط النسخة الحية." />
+  <link rel="canonical" href="https://example.com/project" />
+
+  <!-- Open Graph / Twitter (يتم تحديثها لاحقًا عبر السكربت بحسب بيانات المشروع) -->
+  <meta property="og:title" content="تفاصيل المشروع — شركة تقنية" />
+  <meta property="og:description" content="نظرة عامة، النتائج، والتقنيات المستخدمة" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/project" />
+  <meta property="og:image" content="https://example.com/og-project.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="تفاصيل المشروع — شركة تقنية" />
+  <meta name="twitter:description" content="نظرة عامة، النتائج، والتقنيات المستخدمة" />
+  <meta name="twitter:image" content="https://example.com/og-project.jpg" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#0FB099; --brand-2:#108F80; --brand-3:#1C5C51;
+      --bg-0:#05080e; --bg-1:#0b1220; --bg-2:#0f172a; --ink:#EAFBF7; --muted:#9FB8B4;
+      --card:rgba(255,255,255,.04); --line:rgba(255,255,255,.12); --glass:rgba(255,255,255,.06);
+      --radius:20px; --pad:clamp(16px,4vw,40px);
+      --h1:clamp(28px,5vw,56px); --h2:clamp(22px,3.2vw,34px); --h3:clamp(18px,2.4vw,22px);
+      --body:clamp(14px,2vw,18px); --small:clamp(12px,1.8vw,14px)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:"Cairo", system-ui, Segoe UI, Roboto, Arial; color:var(--ink);
+      background: radial-gradient(1200px 700px at 70% -10%, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%); overflow-x:hidden}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    header{position:sticky; top:0; z-index:100; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,10,18,.7), rgba(7,10,18,.35)); border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding: 14px var(--pad); gap:12px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900}
+    .logo{width:34px; height:34px; border-radius:10px; background: conic-gradient(from 0deg, var(--brand), #5ae3cf, var(--brand-2), var(--brand-3), var(--brand)); box-shadow: 0 6px 18px rgba(0,0,0,.35), inset 0 0 24px rgba(15,176,153,.35)}
+    .menu{display:flex; gap:10px; align-items:center}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border-radius:12px; font-weight:800}
+    .lang-toggle{padding:8px 12px; border-radius:10px; border:1px solid var(--line); background:var(--glass); cursor:pointer; color:#dff3ef; font-weight:800}
+
+    .hero{position:relative; overflow:hidden}
+    .hero .cover{aspect-ratio: 21/9; width:100%; background: radial-gradient(700px 320px at 80% 0%, rgba(88,255,233,.10), transparent), linear-gradient(120deg, #0a1422, #0f1c2f); border-bottom:1px solid var(--line)}
+    .hero .wrap{position:absolute; inset:0; display:grid; align-content:end; padding: var(--pad); background:linear-gradient(180deg, rgba(7,10,18,0) 0%, rgba(7,10,18,.55) 60%, rgba(7,10,18,.75) 100%)}
+    .hero h1{margin:0; font-size:var(--h1); line-height:1.1; font-weight:900; background:linear-gradient(180deg, #dffbf6, #44c7b2); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .hero .sub{margin:8px 0 0; color:#cfeee9}
+
+    .section{padding: calc(var(--pad) + 4px) var(--pad); position:relative}
+    .section .h{font-size:var(--h2); margin:0 0 10px; font-weight:900}
+    .section .sub{margin:0 0 20px; color:var(--muted)}
+
+    .facts{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+    @media (min-width:820px){ .facts{grid-template-columns:repeat(4,1fr)} }
+    .fact{background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:12px}
+    .fact .k{font-size:var(--small); color:#bfeae3}
+    .fact .v{font-weight:900}
+
+    .metrics{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+    @media (min-width:820px){ .metrics{grid-template-columns:repeat(4,1fr)} }
+    .metric{background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border:1px solid var(--line); border-radius:16px; padding:16px; text-align:center}
+    .metric .num{font-size: clamp(26px,4vw,36px); font-weight:900}
+    .metric .lbl{color:var(--muted); font-size:var(--small)}
+
+    .badges{display:flex; flex-wrap:wrap; gap:8px}
+    .badge{display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:var(--glass)}
+    .badge svg{width:18px; height:18px}
+
+    .grid-2{display:grid; grid-template-columns:1fr; gap:16px}
+    @media (min-width:980px){ .grid-2{grid-template-columns:1.1fr .9fr} }
+
+    .panel{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px}
+
+    .gallery{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (min-width:980px){ .gallery{grid-template-columns:repeat(4,1fr)} }
+    .shot{aspect-ratio:4/3; border:1px solid var(--line); border-radius:12px; background:radial-gradient(400px 180px at 70% 20%, rgba(15,176,153,.22), transparent), linear-gradient(180deg, #0a1422, #0f1c2f)}
+
+    .timeline{display:grid; grid-template-columns:1fr; gap:12px}
+    .step{display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px}
+    .step .no{width:40px; height:40px; display:grid; place-items:center; font-weight:900; border-radius:10px; background:linear-gradient(135deg, rgba(15,176,153,.22), rgba(88,255,233,.12)); border:1px solid rgba(15,176,153,.28)}
+
+    .links{display:flex; gap:8px; flex-wrap:wrap}
+
+    footer{padding: 26px var(--pad) 40px; color:#a5c7c1; border-top:1px solid rgba(255,255,255,.08)}
+
+    .wa{ position:fixed; inset-inline-start:18px; inset-block-end:18px; z-index:120 }
+    .wa a{ position:relative; display:grid; place-items:center; width:54px; height:54px; border-radius:50%; background:#25D366; color:#fff; box-shadow:0 14px 35px rgba(0,0,0,.35) }
+    .wa a::after{ content:""; position:absolute; inset:-10px; border-radius:50%; border:2px solid rgba(37,211,102,.3); animation:pulse 1.8s infinite ease-out }
+    @keyframes pulse{ 0%{ transform:scale(.9); opacity:1 } 100%{ transform:scale(1.2); opacity:0 } }
+
+    /* Noscript fallback */
+    noscript .reveal{opacity:1 !important; transform:none !important}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand"><i class="logo"></i> <span id="brandName">شركة تقنية</span></div>
+      <div class="menu">
+        <a class="btn" href="./Projects-Showcase.html">← <span data-i18n="nav.back">عودة للمعرض</span></a>
+        <button id="langToggle" class="lang-toggle">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div id="cover" class="cover" role="img" aria-label="Project cover"></div>
+    <div class="wrap">
+      <h1 id="title">—</h1>
+      <p id="summary" class="sub">—</p>
+    </div>
+  </section>
+
+  <!-- QUICK FACTS -->
+  <section class="section">
+    <div class="facts">
+      <div class="fact"><div class="k" data-i18n="facts.client">العميل</div><div id="client" class="v">—</div></div>
+      <div class="fact"><div class="k" data-i18n="facts.year">السنة</div><div id="year" class="v">—</div></div>
+      <div class="fact"><div class="k" data-i18n="facts.duration">المدة</div><div id="duration" class="v">—</div></div>
+      <div class="fact"><div class="k" data-i18n="facts.scope">النطاق</div><div id="scope" class="v">—</div></div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW + TECH -->
+  <section class="section grid-2">
+    <article class="panel reveal">
+      <h2 class="h" data-i18n="overview">نظرة عامة</h2>
+      <p id="overview" class="sub">—</p>
+      <div class="metrics" id="metrics"></div>
+    </article>
+    <aside class="panel reveal">
+      <h2 class="h" data-i18n="tech">التقنيات المستخدمة</h2>
+      <div class="badges" id="tech"></div>
+    </aside>
+  </section>
+
+  <!-- FEATURES / GALLERY -->
+  <section class="section grid-2">
+    <article class="panel reveal">
+      <h2 class="h" data-i18n="features">المميزات</h2>
+      <ul id="features" style="margin:0; padding:0; display:grid; gap:10px"></ul>
+    </article>
+    <aside class="panel reveal">
+      <h2 class="h" data-i18n="gallery">المعرض</h2>
+      <div id="gallery" class="gallery"></div>
+    </aside>
+  </section>
+
+  <!-- CHALLENGES & SOLUTIONS -->
+  <section class="section grid-2">
+    <article class="panel reveal">
+      <h2 class="h" data-i18n="challenges">التحديات</h2>
+      <ul id="challenges" style="margin:0; padding:0; display:grid; gap:10px"></ul>
+    </article>
+    <article class="panel reveal">
+      <h2 class="h" data-i18n="solutions">الحلول</h2>
+      <ul id="solutions" style="margin:0; padding:0; display:grid; gap:10px"></ul>
+    </article>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <h2 class="h" data-i18n="timeline">خطة التنفيذ</h2>
+    <div id="timeline" class="timeline"></div>
+  </section>
+
+  <!-- LINKS & CTA -->
+  <section class="section">
+    <h2 class="h" data-i18n="links">روابط</h2>
+    <div class="links" id="links"></div>
+    <div style="margin-top:12px" class="links">
+      <a id="waCta" class="btn" target="_blank" rel="noopener">💬 <span data-i18n="cta">ناقشنا مشروعك على واتساب</span></a>
+      <button id="shareBtn" class="btn">🔗 <span data-i18n="share">مشاركة</span></button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="section">
+    <article class="panel reveal">
+      <h2 class="h" data-i18n="testimonial">رأي العميل</h2>
+      <blockquote id="quote" style="margin:0; color:#dffbf6; font-size:clamp(16px,2.2vw,20px); line-height:1.8">—</blockquote>
+      <div id="quoteMeta" style="margin-top:8px; color:var(--muted)">—</div>
+    </article>
+  </section>
+
+  <footer>
+    © <span id="y"></span> <span id="brandFoot">شركة تقنية</span> — <span data-i18n="rights">جميع الحقوق محفوظة.</span>
+  </footer>
+
+  <div class="wa"><a id="waFloat" href="https://wa.me/966568767724" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a></div>
+
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+  // ====== Demo Project Data (عدّل freely) ======
+  const WA_NUMBER = '966568767724';
+  const PROJECT = {
+    id:'saas-analytics',
+    title:{ ar:'منصة SaaS لتحليلات المبيعات', en:'SaaS Sales Analytics Platform' },
+    summary:{ ar:'لوحات KPI لحظية، فلاتر متقدمة، وتوقعات أسبوعية بالذكاء الاصطناعي.', en:'Realtime KPIs, advanced filters, and AI weekly forecasts.' },
+    coverGradient:'#0a1422,#0f1c2f', // يمكنك إستبدالها بصورة: coverImage:'./cover.jpg'
+    client:'Retail Pro', year:2025, duration:'3 أشهر', scope:{ ar:'Frontend + Backend', en:'Frontend + Backend' },
+    overview:{ ar:'صممنا تجربة تضع أهم المقاييس أولًا، مع قابلية تصفية عالية وأداء مُحسّن. بنيت الواجهة على مكونات خفيفة وتخزين مؤقت لخفض زمن التفاعل.', en:'We focused on critical KPIs first, with high filterability and optimized performance. Built with light components and caching to reduce TTI.' },
+    metrics:[ {k:'TTI', v:'1.9s'}, {k:'اعتماد المستخدمين', v:'+34%'}, {k:'دقة التنبؤ', v:'±6%'}, {k:'Uptime', v:'99.99%'} ],
+    tech:['next','react','tailwind','node','postgres','echarts'],
+    features:{
+      ar:['لوحات KPI متعددة الفروع','فلترة حسب المتجر/التصنيف/الفترة','تصدير PDF/CSV ومزامنة Google Sheets','تنبؤ أسبوعي للمبيعات (+12%)'],
+      en:['Multi-branch KPI dashboards','Filter by store/category/time','PDF/CSV export + Google Sheets sync','Weekly sales forecast (+12%)']
+    },
+    challenges:{ ar:['تفاوت جودة البيانات','حجم بيانات كبير','تأخر تحديثات بعض المصادر'], en:['Data quality variance','Large data volume','Delayed updates from sources'] },
+    solutions:{ ar:['طبقات تنظيف وتوحيد','تجميع مسبق + كاش ذكي','Jobs مجدولة للتناغم'], en:['Cleaning/unification layers','Pre-aggregation + smart cache','Scheduled jobs for alignment'] },
+    timeline:[
+      {no:'01', ar:'اكتشاف المتطلبات وKPI', en:'Discovery & KPIs'},
+      {no:'02', ar:'تصميم UX/UI وبروتوتايب', en:'UX/UI & Prototype'},
+      {no:'03', ar:'تطوير الواجهة وAPIs', en:'Frontend & APIs'},
+      {no:'04', ar:'الاختبار والأمان', en:'Testing & Security'},
+      {no:'05', ar:'الإطلاق والمتابعة', en:'Launch & Monitoring'}
+    ],
+    gallery:6,
+    links:[ {label:{ar:'موقع الإنتاج',en:'Live Site'}, href:'#'}, {label:{ar:'دراسة حالة PDF',en:'Case Study PDF'}, href:'#'} ],
+    quote:{ text:{ ar:'منصة غيّرت طريقة اتخاذ القرار لدينا — السرعة والوضوح مذهلان.', en:'A platform that changed our decision-making — speed and clarity are outstanding.' }, meta:{ ar:'— مدير التحول الرقمي · Retail Pro', en:'— Digital Transformation Lead · Retail Pro' } }
+  };
+
+  // ====== Icons ======
+  const ICONS = {
+    next:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M12 2a10 10 0 1 0 10 10'/><path d='M7 7l10 10'/></svg>`,
+    react:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><circle cx='12' cy='12' r='2'/><ellipse rx='10' ry='4' cx='12' cy='12' transform='rotate(60 12 12)'/><ellipse rx='10' ry='4' cx='12' cy='12' transform='rotate(-60 12 12)'/><ellipse rx='10' ry='4' cx='12' cy='12'/></svg>`,
+    tailwind:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 6c-2.7 0-4.4 1.3-5 4 1-.7 2-.9 3-.5 1 .4 1.7 1.3 2 2.7.8-2 2.3-3 4.5-3 2 0 3.4.9 4.5 2.7-1 .7-2 .9-3 .5-1-.4-1.7-1.3-2-2.7-.8 2-2.3 3-4.5 3-2 0-3.4-.9-4.5-2.7 1-.7 2-.9 3-.5 1 .4 1.7 1.3 2 2.7.8-2 2.3-3 4.5-3'/></svg>`,
+    node:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 2l9 5v10l-9 5-9-5V7l9-5zm0 3.1L6 7.5v8.9l6 3.4 6-3.4V7.5l-6-2.4z'/></svg>`,
+    postgres:`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M6 9c0-4 12-4 12 0v6c0 4-12 4-12 0V9z'/><path d='M12 7v10'/></svg>`,
+    echarts:`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 2a10 10 0 1 0 10 10h-8z'/></svg>`
+  };
+
+  // ====== i18n ======
+  const UI = {
+    ar: { nav:{back:'عودة للمعرض'}, facts:{client:'العميل', year:'السنة', duration:'المدة', scope:'النطاق'}, overview:'نظرة عامة', tech:'التقنيات المستخدمة', features:'المميزات', gallery:'المعرض', challenges:'التحديات', solutions:'الحلول', timeline:'خطة التنفيذ', links:'روابط', cta:'ناقشنا مشروعك على واتساب', share:'مشاركة', testimonial:'رأي العميل', rights:'جميع الحقوق محفوظة.' },
+    en: { nav:{back:'Back to showcase'}, facts:{client:'Client', year:'Year', duration:'Duration', scope:'Scope'}, overview:'Overview', tech:'Tech Stack', features:'Features', gallery:'Gallery', challenges:'Challenges', solutions:'Solutions', timeline:'Timeline', links:'Links', cta:'Discuss on WhatsApp', share:'Share', testimonial:'Testimonial', rights:'All rights reserved.' }
+  };
+  let lang = 'ar';
+
+  // ====== Helpers ======
+  const el = (s, r=document)=> r.querySelector(s); const els = (s, r=document)=> Array.from(r.querySelectorAll(s));
+  function setText(i18nKey, text){ const node = document.querySelector(`[data-i18n="${i18nKey}"]`); if(node) node.textContent = text; }
+  function setLang(l){ lang=l; document.documentElement.lang=l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; el('#langToggle').textContent = l==='ar'?'EN':'AR'; applyI18n(); fill(PROJECT); }
+  function applyI18n(){ const d=UI[lang]; setText('nav.back', d.nav.back); els('[data-i18n^="facts."]').forEach(n=>{ const k=n.getAttribute('data-i18n').split('.')[1]; n.textContent = d.facts[k]; }); setText('overview', d.overview); setText('tech', d.tech); setText('features', d.features); setText('gallery', d.gallery); setText('challenges', d.challenges); setText('solutions', d.solutions); setText('timeline', d.timeline); setText('links', d.links); setText('cta', d.cta); setText('share', d.share); setText('testimonial', d.testimonial); setText('rights', d.rights); el('#brandName').textContent = l==='ar'?'شركة تقنية':'Tech Company'; el('#brandFoot').textContent = el('#brandName').textContent; }
+
+  // ====== Fill Page ======
+  function fill(p){
+    // Cover
+    const coverEl = el('#cover');
+    if(p.coverImage){ coverEl.style.backgroundImage = `url(${p.coverImage})`; coverEl.style.backgroundSize='cover'; coverEl.style.backgroundPosition='center'; }
+    else if(p.coverGradient){ coverEl.style.background = `radial-gradient(700px 320px at 80% 0%, rgba(88,255,233,.10), transparent), linear-gradient(120deg, ${p.coverGradient})`; }
+    // Head
+    el('#title').textContent = p.title[lang];
+    el('#summary').textContent = p.summary[lang];
+    // Facts
+    el('#client').textContent = p.client; el('#year').textContent = p.year; el('#duration').textContent = p.duration; el('#scope').textContent = p.scope[lang] || p.scope;
+    // Overview & metrics
+    el('#overview').textContent = p.overview[lang];
+    el('#metrics').innerHTML = (p.metrics||[]).map(m=>`<div class='metric'><div class='num'>${m.v}</div><div class='lbl'>${m.k}</div></div>`).join('');
+    // Tech
+    el('#tech').innerHTML = (p.tech||[]).map(k=>`<span class='badge'>${ICONS[k]||''}<span>${k.toUpperCase()}</span></span>`).join('');
+    // Features
+    el('#features').innerHTML = (p.features?.[lang]||[]).map(x=>`<li style='list-style:none; display:flex; gap:10px'><span style='width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 6px rgba(15,176,153,.16)'></span><span>${x}</span></li>`).join('');
+    // Gallery
+    const g = Math.max(0, p.gallery|0); el('#gallery').innerHTML = Array.from({length:g}).map(()=>`<div class='shot'></div>`).join('');
+    // Challenges / Solutions
+    el('#challenges').innerHTML = (p.challenges?.[lang]||[]).map(x=>`<li style='list-style:none; display:flex; gap:10px'><span style='width:10px; height:10px; border-radius:50%; background:#ffb84d; box-shadow:0 0 0 6px rgba(255,184,77,.16)'></span><span>${x}</span></li>`).join('');
+    el('#solutions').innerHTML = (p.solutions?.[lang]||[]).map(x=>`<li style='list-style:none; display:flex; gap:10px'><span style='width:10px; height:10px; border-radius:50%; background:#44c7b2; box-shadow:0 0 0 6px rgba(68,199,178,.16)'></span><span>${x}</span></li>`).join('');
+    // Timeline
+    el('#timeline').innerHTML = (p.timeline||[]).map(s=>`<div class='step reveal'><div class='no'>${s.no}</div><div>${s[lang]}</div></div>`).join('');
+    // Links
+    el('#links').innerHTML = (p.links||[]).map(l=>`<a class='btn' href='${l.href}' target='_blank' rel='noopener'>${(l.label?.[lang]||l.label)||'Link'} ↗</a>`).join('') || `<p style='color:var(--muted)'>—</p>`;
+    // Quote
+    el('#quote').textContent = p.quote?.text?.[lang] || '—'; el('#quoteMeta').textContent = p.quote?.meta?.[lang] || '';
+    // CTA
+    const wa = el('#waCta'); wa.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent((lang==='ar'?'أرغب بمشروع مشابه: ':'I want a similar project: ')+p.title[lang])}`;
+
+    // Update Meta for share (best effort)
+    const set = (sel, attr, val) => { const m = document.querySelector(sel); if(m) m.setAttribute(attr, val); };
+    set('meta[property="og:title"]','content', `${p.title[lang]} — ${el('#brandName').textContent}`);
+    set('meta[property="og:description"]','content', p.summary[lang]);
+    set('meta[property="og:image"]','content', p.coverImage || 'https://example.com/og-project.jpg');
+    set('meta[name="twitter:title"]','content', `${p.title[lang]} — ${el('#brandName').textContent}`);
+    set('meta[name="twitter:description"]','content', p.summary[lang]);
+    set('meta[name="twitter:image"]','content', p.coverImage || 'https://example.com/og-project.jpg');
+  }
+
+  // ====== Share ======
+  el('#shareBtn').addEventListener('click', async ()=>{
+    const data = { title: el('#title').textContent, text: el('#summary').textContent, url: location.href };
+    try{ if(navigator.share){ await navigator.share(data); } else { await navigator.clipboard.writeText(data.url); alert(lang==='ar'? 'تم نسخ الرابط' : 'Link copied'); } }
+    catch(e){ console.log(e); }
+  });
+
+  // ====== Init ======
+  document.getElementById('y').textContent = new Date().getFullYear();
+  document.getElementById('langToggle').addEventListener('click',()=> setLang(lang==='ar'?'en':'ar'));
+  setLang('ar');
+  fill(PROJECT);
+
+  // Reveal animations
+  if(window.gsap){
+    gsap.utils.toArray('.reveal').forEach((el,i)=>{
+      gsap.fromTo(el, {opacity:0, y:20}, {opacity:1, y:0, duration:.6, delay:i*0.06, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 88%'}});
+    });
+  }
+
+  </script>
+</body>
+</html>

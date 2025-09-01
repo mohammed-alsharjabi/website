@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>خدماتنا — ورقة تنقسم والروبوت يجمعها في جيبه</title>
+  <style>
+    :root{ --bg:#0b1220; --card:#0f1a2e; --card-2:#0c1626; --primary:#00E0FF; --accent:#7C5CFF; --gold:#ffc857; --text:#e6f3ff; --muted:#a8c1d9; --glow:0 0 24px rgba(0,224,255,.45),0 0 64px rgba(124,92,255,.25); --radius:22px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.15), transparent 60%),
+      radial-gradient(1000px 600px at 90% -10%, rgba(0,224,255,.10), transparent 60%), var(--bg);
+      color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; display:flex; flex-direction:column; gap:24px; padding:20px 20px 56px }
+    header{display:flex; flex-direction:column; gap:8px}
+    .title{font-weight:800; letter-spacing:.5px; font-size: clamp(20px, 2.2vw, 34px)}
+    .subtitle{opacity:.85; font-size: clamp(12px, 1.3vw, 15px)}
+
+    /* شبكة */
+    .grid{display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));}
+    .card{position:relative; isolation:isolate}
+
+    .card-inn{position:relative; border-radius:var(--radius); background:linear-gradient(160deg, var(--card), var(--card-2)); border:1px solid rgba(0,224,255,.15); box-shadow:0 2px 30px rgba(0,0,0,.45); padding:18px; min-height:220px; transition: box-shadow .4s }
+    .card-inn:hover{ box-shadow: var(--glow)}
+
+    .edge{position:absolute; inset:0; pointer-events:none; border-radius:var(--radius)}
+    .edge::before{content:""; position:absolute; inset:-1px; border-radius:inherit; background: conic-gradient(from 180deg at 50% 50%, rgba(0,224,255,.0), rgba(0,224,255,.45), rgba(124,92,255,.35), rgba(0,224,255,.0)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; padding:1px; filter: blur(1px); opacity:.6}
+
+    .card-header{display:flex; align-items:center; justify-content:space-between}
+    .name{font-weight:800; font-size: clamp(16px, 1.5vw, 20px)}
+    .badge{font-size:12px; color:#00141a; background:linear-gradient(90deg, var(--primary), var(--accent)); padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.3px}
+    .desc{margin-top:8px; color:var(--muted); font-size:14px; line-height:1.6}
+
+    /* المسرح فوق الكرت */
+    .stage{ position:absolute; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index:60; overflow:visible }
+
+    /* الروبوت أصغر */
+    .bot{ position:absolute; left:50%; transform: translate(-50%, -10px) scale(.66); bottom: 14px; filter: drop-shadow(0 18px 50px rgba(0,224,255,.35)); opacity:0; transition: opacity .35s ease }
+
+    /* الجيب والبطاقة */
+    .pocket{ position:absolute; left:50%; transform: translateX(-50%); bottom:120px; width:58px; height:38px; background:#0e1a2d; border:1px solid rgba(0,224,255,.4); border-bottom-width:2px; border-radius:6px 6px 14px 14px; box-shadow: inset 0 -10px 18px rgba(124,92,255,.25); opacity:0; transition: opacity .35s ease .2s }
+
+    /* شرائح التمزق */
+    .slice-wrap{ position:absolute; pointer-events:none; z-index:70; left:0; top:0; }
+    .slice{ position:absolute; top:0; height:100%; background:linear-gradient(160deg, var(--card), var(--card-2)); border:1px solid rgba(0,224,255,.08); box-shadow: inset 0 0 24px rgba(255,255,255,.02) }
+
+    /* نجوم خفيفة */
+    @keyframes stars { from {transform: translateY(0) scale(1); opacity:1} to {transform: translateY(-420px) scale(0.9); opacity:0} }
+    .stars{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:55 }
+    .stars span{ position:absolute; bottom:-14px; width:3px; height:3px; background:white; border-radius:50%; animation: stars linear forwards; filter: drop-shadow(0 0 6px rgba(255,255,255,.8)) }
+
+    @media (max-width:720px){
+      .bot{ transform: translate(-50%, -6px) scale(.6) }
+      .pocket{ bottom:110px }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">خدماتنا — الكرت يتمزق لشرائح والروبوت يجمعها في جيبه</div>
+    <div class="subtitle">مرّر الماوس فوق الكرت: الورقة تنقسم لعشرات الشرائح ثم تتطاير وتتجمع داخل جيب الروبوت ✨</div>
+  </header>
+
+  <section class="grid" id="grid">
+    <article class="card" data-services='["مواقع احترافية سريعة","لوحة تحكم متقدمة","SEO تقني"]'>
+      <div class="card-inn">
+        <div class="edge"></div>
+        <div class="card-header"><div class="name">تطوير مواقع</div><span class="badge">Web</span></div>
+        <p class="desc">مواقع عصرية برسوميات تفاعلية وأداء عالٍ.</p>
+      </div>
+    </article>
+
+    <article class="card" data-services='["تطبيقات Flutter أصلية","دعم iOS & Android","تجربة مستخدم خيالية"]'>
+      <div class="card-inn">
+        <div class="edge"></div>
+        <div class="card-header"><div class="name">تطبيقات موبايل</div><span class="badge">Flutter</span></div>
+        <p class="desc">تطبيقات سريعة بواجهة أنيقة وحركات مبهرة.</p>
+      </div>
+    </article>
+
+    <article class="card" data-services='["متاجر سلة/ووردبريس","بوابات دفع محلية","تحسين التحويلات"]'>
+      <div class="card-inn">
+        <div class="edge"></div>
+        <div class="card-header"><div class="name">متاجر إلكترونية</div><span class="badge">E‑Commerce</span></div>
+        <p class="desc">متاجر متكاملة مع شحن ودفع وقياس أداء.</p>
+      </div>
+    </article>
+  </section>
+
+  <script>
+    // نجوم خفيفة فوق كل كرت أثناء التجميع
+    function sprinkleStars(stage){
+      const wrap=document.createElement('div'); wrap.className='stars'; stage.append(wrap);
+      for(let i=0;i<18;i++){
+        const s=document.createElement('span');
+        s.style.left = (Math.random()*100).toFixed(2)+'%';
+        s.style.animationDuration = (1.3+Math.random()*1.6).toFixed(2)+'s';
+        wrap.appendChild(s);
+        setTimeout(()=>s.remove(), 2200);
+      }
+    }
+
+    // روبوت SVG
+    function createBotSVG(){
+      const NS='http://www.w3.org/2000/svg';
+      const svg=document.createElementNS(NS,'svg'); svg.setAttribute('viewBox','0 0 220 220'); svg.setAttribute('width','220'); svg.setAttribute('height','220');
+      const defs=document.createElementNS(NS,'defs'); const g=document.createElementNS(NS,'linearGradient'); g.setAttribute('id','g1'); g.setAttribute('x1','0'); g.setAttribute('x2','1');
+      const a=document.createElementNS(NS,'stop'); a.setAttribute('offset','0%'); a.setAttribute('stop-color','#00E0FF');
+      const b=document.createElementNS(NS,'stop'); b.setAttribute('offset','100%'); b.setAttribute('stop-color','#7C5CFF');
+      g.append(a,b); defs.append(g); svg.append(defs);
+      function R(tag,attrs){ const el=document.createElementNS(NS,tag); for(const k in attrs) el.setAttribute(k, attrs[k]); return el }
+      svg.append(
+        R('rect',{x:50,y:24,rx:20,width:120,height:80,fill:'#0b172b',stroke:'url(#g1)',"stroke-width":2}),
+        R('circle',{cx:90,cy:64,r:10,fill:'#00E0FF'}),
+        R('circle',{cx:130,cy:64,r:10,fill:'#00E0FF'}),
+        R('rect',{x:80,y:86,width:60,height:8,rx:4,fill:'#10233d'}),
+        R('line',{x1:110,y1:24,x2:110,y2:6,stroke:'#7C5CFF',"stroke-width":3}),
+        R('circle',{cx:110,cy:6,r:5,fill:'#7C5CFF'}),
+        R('rect',{x:35,y:110,rx:18,width:150,height:84,fill:'#0b172b',stroke:'url(#g1)',"stroke-width":2}),
+        R('circle',{cx:160,cy:150,r:8,fill:'#ffc857'}),
+        R('rect',{x:8,y:120,width:22,height:60,rx:10,fill:'#0b172b',stroke:'#00E0FF',"stroke-width":2}),
+        R('rect',{x:190,y:120,width:22,height:60,rx:10,fill:'#0b172b',stroke:'#00E0FF',"stroke-width":2})
+      );
+      return svg;
+    }
+
+    function shredToPocket(card){
+      // إعداد المسرح والروبوت والجيب
+      let stage=card.querySelector('.stage');
+      if(stage) return; // موجود
+      stage=document.createElement('div'); stage.className='stage'; card.append(stage);
+
+      const bot=document.createElement('div'); bot.className='bot'; bot.append(createBotSVG()); stage.append(bot);
+      const pocket=document.createElement('div'); pocket.className='pocket'; stage.append(pocket);
+
+      // حساب مستطيل الكرت
+      const inn=card.querySelector('.card-inn');
+      const innRect=inn.getBoundingClientRect();
+      const stageRect=stage.getBoundingClientRect();
+
+      // غلاف الشرائح فوق نفس موضع الكرت
+      const wrap=document.createElement('div'); wrap.className='slice-wrap';
+      wrap.style.left=(innRect.left-stageRect.left)+'px';
+      wrap.style.top=(innRect.top-stageRect.top)+'px';
+      wrap.style.width=innRect.width+'px';
+      wrap.style.height=innRect.height+'px';
+      stage.append(wrap);
+
+      const slices=32; // عدد الشرائح
+      const w=innRect.width/slices;
+      for(let i=0;i<slices;i++){
+        const s=document.createElement('div'); s.className='slice';
+        s.style.left=(i*w)+'px'; s.style.width=Math.ceil(w+1)+'px';
+        // تمزيق أولي بسيط
+        const jitterX=(Math.random()*16-8); // -8..8
+        const jitterR=(Math.random()*6-3);  // -3..3 deg
+        s.style.transform = `translate(${jitterX}px, 0) rotate(${jitterR}deg)`;
+        s.style.transition = 'transform .18s ease-out';
+        wrap.appendChild(s);
+      }
+
+      // إظهار الروبوت والجيب
+      requestAnimationFrame(()=>{ bot.style.opacity='1'; pocket.style.opacity='1'; });
+
+      // بعد تمزيق خفيف، تطير الشرائح نحو الجيب
+      setTimeout(()=>{
+        const pocketRect=pocket.getBoundingClientRect();
+        const targetX=pocketRect.left + pocketRect.width/2 - stageRect.left;
+        const targetY=pocketRect.top + pocketRect.height/2 - stageRect.top;
+        const children=[...wrap.children];
+        children.forEach((s,idx)=>{
+          const br=s.getBoundingClientRect();
+          const cx=br.left + br.width/2 - stageRect.left;
+          const cy=br.top + br.height/2 - stageRect.top;
+          const dx=targetX - cx;
+          const dy=targetY - cy;
+          const delay = (idx%8)*12; // موجات خفيفة
+          s.style.transition = `transform .6s cubic-bezier(.2,.8,.2,1) ${delay}ms`;
+          s.style.transform = `translate(${dx}px, ${dy}px) scale(.18) rotate(${(Math.random()*20-10).toFixed(1)}deg)`;
+        });
+        sprinkleStars(stage);
+      }, 180);
+    }
+
+    function clearStage(card){ const stage=card.querySelector('.stage'); if(stage) stage.remove(); }
+
+    // فتح بالتحويم، إغلاق عند الإبعاد — على الجوال باللمس
+    document.querySelectorAll('.card').forEach(card=>{
+      const box=card.querySelector('.card-inn');
+      box.addEventListener('mouseenter', ()=> shredToPocket(card));
+      card.addEventListener('mouseleave', ()=> clearStage(card));
+      box.addEventListener('touchstart', (e)=>{ shredToPocket(card); e.stopPropagation(); }, {passive:true});
+      document.addEventListener('touchstart', (e)=>{ if(!card.contains(e.target)) clearStage(card); }, {passive:true});
+    });
+  </script>
+</body>
+</html>

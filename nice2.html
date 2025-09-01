@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>خدماتنا — كرت ينقسم ويخرج منه الروبوت</title>
+  <style>
+    :root{ --bg:#0b1220; --card:#0f1a2e; --card-2:#0c1626; --primary:#00E0FF; --accent:#7C5CFF; --gold:#ffc857; --text:#e6f3ff; --muted:#a8c1d9; --glow:0 0 24px rgba(0,224,255,.45),0 0 64px rgba(124,92,255,.25); --radius:22px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.15), transparent 60%),
+      radial-gradient(1000px 600px at 90% -10%, rgba(0,224,255,.10), transparent 60%), var(--bg);
+      color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; display:flex; flex-direction:column; gap:24px; padding:20px 20px 56px }
+    header{display:flex; flex-direction:column; gap:8px}
+    .title{font-weight:800; letter-spacing:.5px; font-size: clamp(20px, 2.2vw, 34px)}
+    .subtitle{opacity:.85; font-size: clamp(12px, 1.3vw, 15px)}
+
+    /* شبكة */
+    .grid{display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));}
+    .card{position:relative; isolation:isolate}
+    .card-inn{position:relative; border-radius:var(--radius); background:linear-gradient(160deg, var(--card), var(--card-2)); border:1px solid rgba(0,224,255,.15); box-shadow:0 2px 30px rgba(0,0,0,.45); padding:18px; min-height:220px; transition: box-shadow .4s }
+    .card-inn:hover{ box-shadow: var(--glow)}
+
+    .edge{position:absolute; inset:0; pointer-events:none; border-radius:var(--radius)}
+    .edge::before{content:""; position:absolute; inset:-1px; border-radius:inherit; background: conic-gradient(from 180deg at 50% 50%, rgba(0,224,255,.0), rgba(0,224,255,.45), rgba(124,92,255,.35), rgba(0,224,255,.0)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; padding:1px; filter: blur(1px); opacity:.6}
+
+    .card-header{display:flex; align-items:center; justify-content:space-between}
+    .name{font-weight:800; font-size: clamp(16px, 1.5vw, 20px)}
+    .badge{font-size:12px; color:#00141a; background:linear-gradient(90deg, var(--primary), var(--accent)); padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.3px}
+    .desc{margin-top:8px; color:var(--muted); font-size:14px; line-height:1.6}
+
+    /* تأثير الانقسام الحقيقي */
+    .split-wrap{ position:absolute; inset:0; border-radius:inherit; overflow:hidden; pointer-events:none }
+    .half{ position:absolute; top:0; width:50%; height:100%; background:inherit; border-top-left-radius:inherit; border-bottom-left-radius:inherit; border-top-right-radius:inherit; border-bottom-right-radius:inherit; box-shadow: inset 0 0 40px rgba(255,255,255,.02) }
+    .half.left{ left:0; clip-path: inset(0 50% 0 0 round var(--radius) 0 0 var(--radius)) }
+    .half.right{ right:0; clip-path: inset(0 0 0 50% round 0 var(--radius) var(--radius) 0) }
+    .crack{ position:absolute; left:50%; top:8px; transform:translateX(-50%); width:2px; height:calc(100% - 16px); background: repeating-linear-gradient( to bottom, rgba(124,92,255,.7) 0 8px, rgba(0,224,255,.8) 8px 16px); filter: drop-shadow(0 0 6px rgba(0,224,255,.6)); opacity:.0; }
+
+    .card.open .half.left{ animation: splitL .55s cubic-bezier(.2,.75,.2,1) forwards }
+    .card.open .half.right{ animation: splitR .55s cubic-bezier(.2,.75,.2,1) forwards }
+    .card.open .crack{ animation: crackOn .4s ease-out forwards }
+
+    @keyframes splitL{ to{ transform: translateX(-14px) rotateY(-16deg) } }
+    @keyframes splitR{ to{ transform: translateX(14px) rotateY(16deg) } }
+    @keyframes crackOn{ from{opacity:0} to{opacity:1} }
+
+    /* المسرح والروبوت (أصغر شوي) */
+    .stage{ position:absolute; left:50%; top:0; transform: translate(-50%, -4px); width:min(520px, 92vw); height:340px; pointer-events:none; z-index:60; }
+    .bot{ position:absolute; left:50%; bottom:108px; transform: translate(-50%, 6px) scale(.68); filter: drop-shadow(0 18px 50px rgba(0,224,255,.35)); opacity:0; animation: emerge .6s .22s ease-out forwards }
+    @keyframes emerge{ to{ transform: translate(-50%, 0) scale(.68); opacity:1 } }
+
+    /* فقاعة كلام بحجم مضبوط */
+    .bubble{ position:absolute; left:50%; bottom: 220px; transform: translateX(-50%); min-width: 210px; max-width: min(88vw, 400px); background: rgba(9,18,34,.94); border:1px solid rgba(0,224,255,.25); border-radius: 14px; padding: 10px 12px; box-shadow: var(--glow); opacity:0; animation: talk .28s .5s ease-out forwards }
+    .bubble:after{ content:""; position:absolute; left:50%; transform: translateX(-50%) rotate(45deg); bottom: -8px; width:14px; height:14px; background: inherit; border: inherit; border-top:none; border-right:none }
+    @keyframes talk{ to{ opacity:1 } }
+    .bubble h4{ margin:0 0 6px; font-size:13px }
+    .bubble ul{ margin:0; padding:0 0 0 1rem; font-size:12.5px; line-height:1.55 }
+
+    /* جيب الروبوت وبطاقة صغيرة تدخل فيه */
+    .pocket{ position:absolute; left:50%; transform: translateX(-50%); bottom:140px; width:56px; height:38px; background:#0e1a2d; border:1px solid rgba(0,224,255,.4); border-bottom-width:2px; border-radius:6px 6px 14px 14px; box-shadow: inset 0 -10px 18px rgba(124,92,255,.25); opacity:0; animation: pocket .5s .38s ease-out forwards }
+    @keyframes pocket{ to{ opacity:1 } }
+    .mini-card{ position:absolute; left:50%; bottom:148px; transform: translateX(-50%) rotate(-6deg); width:40px; height:26px; background:linear-gradient(160deg, #142237, #0f1a2e); border:1px solid rgba(0,224,255,.35); border-radius:4px; box-shadow:0 6px 16px rgba(0,0,0,.5); opacity:0; animation: tuck .6s .46s cubic-bezier(.2,.8,.2,1) forwards }
+    @keyframes tuck{ to{ transform: translateX(-50%) rotate(-4deg) translateY(6px); opacity:1 } }
+
+    /* نجوم كنز خفيفة فوق الانقسام */
+    @keyframes stars { from {transform: translateY(0) scale(1); opacity:1} to {transform: translateY(-420px) scale(0.9); opacity:0} }
+    .stars{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:55 }
+    .stars span{ position:absolute; bottom:-14px; width:3px; height:3px; background:white; border-radius:50%; animation: stars linear forwards; filter: drop-shadow(0 0 6px rgba(255,255,255,.8)) }
+
+    /* موبايل */
+    @media (max-width:720px){
+      .stage{ width: 92vw; height: 320px; transform: translate(-50%, 0) }
+      .bot{ transform: translate(-50%, 0) scale(.64) }
+      .bubble{ bottom: 200px; max-width: 92vw }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">خدماتنا — الكرت ينقسم نصفين والروبوت يخرج بهدوء</div>
+    <div class="subtitle">حرّك الماوس فوق أي كرت: ينقسم بنقرة بصرية، الروبوت يطلع صغير وموزون، وجيب على صدره يمسك بطاقة من الكرت ✨</div>
+  </header>
+
+  <section class="grid" id="grid">
+    <article class="card" data-services='["مواقع احترافية سريعة","لوحة تحكم متقدمة","SEO تقني"]'>
+      <div class="card-inn">
+        <div class="edge"></div>
+        <div class="card-header"><div class="name">تطوير مواقع</div><span class="badge">Web</span></div>
+        <p class="desc">مواقع عصرية برسوميات تفاعلية وأداء عالٍ.</p>
+        <div class="split-wrap"><div class="half left"></div><div class="half right"></div><div class="crack"></div></div>
+      </div>
+    </article>
+
+    <article class="card" data-services='["تطبيقات Flutter أصلية","دعم iOS & Android","تجربة مستخدم خيالية"]'>
+      <div class="card-inn">
+        <div class="edge"></div>
+        <div class="card-header"><div class="name">تطبيقات موبايل</div><span class="badge">Flutter</span></div>
+        <p class="desc">تطبيقات سريعة بواجهة أنيقة وحركات مبهرة.</p>
+        <div class="split-wrap"><div class="half left"></div><div class="half right"></div><div class="crack"></div></div>
+      </div>
+    </article>
+
+    <article class="card" data-services='["متاجر سلة/ووردبريس","بوابات دفع محلية","تحسين التحويلات"]'>
+      <div class="card-inn">
+        <div class="edge"></div>
+        <div class="card-header"><div class="name">متاجر إلكترونية</div><span class="badge">E‑Commerce</span></div>
+        <p class="desc">متاجر متكاملة مع شحن ودفع وقياس أداء.</p>
+        <div class="split-wrap"><div class="half left"></div><div class="half right"></div><div class="crack"></div></div>
+      </div>
+    </article>
+  </section>
+
+  <script>
+    // نجوم خفيفة لكل كرت عند الفتح
+    function sprinkleStars(stage){
+      const wrap=document.createElement('div'); wrap.className='stars'; stage.append(wrap);
+      for(let i=0;i<24;i++){
+        const s=document.createElement('span');
+        s.style.left = (Math.random()*100).toFixed(2)+'%';
+        s.style.animationDuration = (1.5+Math.random()*1.8).toFixed(2)+'s';
+        wrap.appendChild(s);
+        setTimeout(()=>s.remove(), 2500);
+      }
+    }
+
+    // روبوت SVG + جيب
+    function createBotSVG(){
+      const NS='http://www.w3.org/2000/svg';
+      const svg=document.createElementNS(NS,'svg'); svg.setAttribute('viewBox','0 0 220 220'); svg.setAttribute('width','220'); svg.setAttribute('height','220');
+      const defs=document.createElementNS(NS,'defs'); const g=document.createElementNS(NS,'linearGradient'); g.setAttribute('id','g1'); g.setAttribute('x1','0'); g.setAttribute('x2','1');
+      const a=document.createElementNS(NS,'stop'); a.setAttribute('offset','0%'); a.setAttribute('stop-color','#00E0FF');
+      const b=document.createElementNS(NS,'stop'); b.setAttribute('offset','100%'); b.setAttribute('stop-color','#7C5CFF');
+      g.append(a,b); defs.append(g); svg.append(defs);
+      function R(tag,attrs){ const el=document.createElementNS(NS,tag); for(const k in attrs) el.setAttribute(k, attrs[k]); return el }
+      svg.append(
+        R('rect',{x:50,y:24,rx:20,width:120,height:80,fill:'#0b172b',stroke:'url(#g1)',"stroke-width":2}),
+        R('circle',{cx:90,cy:64,r:10,fill:'#00E0FF'}),
+        R('circle',{cx:130,cy:64,r:10,fill:'#00E0FF'}),
+        R('rect',{x:80,y:86,width:60,height:8,rx:4,fill:'#10233d'}),
+        R('line',{x1:110,y1:24,x2:110,y2:6,stroke:'#7C5CFF',"stroke-width":3}),
+        R('circle',{cx:110,cy:6,r:5,fill:'#7C5CFF'}),
+        R('rect',{x:35,y:110,rx:18,width:150,height:84,fill:'#0b172b',stroke:'url(#g1)',"stroke-width":2}),
+        R('circle',{cx:160,cy:150,r:8,fill:'#ffc857'}),
+        R('rect',{x:8,y:120,width:22,height:60,rx:10,fill:'#0b172b',stroke:'#00E0FF',"stroke-width":2}),
+        R('rect',{x:190,y:120,width:22,height:60,rx:10,fill:'#0b172b',stroke:'#00E0FF',"stroke-width":2})
+      );
+      return svg;
+    }
+
+    function openCard(card){
+      if(card.classList.contains('open')) return;
+      card.classList.add('open');
+      const inn=card.querySelector('.card-inn');
+
+      // مسرح الروبوت فوق الكرت
+      const stage=document.createElement('div'); stage.className='stage'; card.append(stage);
+      const bot=document.createElement('div'); bot.className='bot'; bot.append(createBotSVG()); stage.append(bot);
+      // جيب + بطاقة صغيرة من الكرت
+      const pocket=document.createElement('div'); pocket.className='pocket'; stage.append(pocket);
+      const mini=document.createElement('div'); mini.className='mini-card'; stage.append(mini);
+
+      // فقاعة كلام
+      const services=JSON.parse(card.dataset.services||'[]');
+      const bubble=document.createElement('div'); bubble.className='bubble'; bubble.innerHTML=`<h4>أهلًا! أنا ريبوت مساعدك 🤖</h4><ul>${services.map(s=>`<li>${s}</li>`).join('')}</ul>`; stage.append(bubble);
+
+      sprinkleStars(stage);
+    }
+
+    function closeCard(card){
+      if(!card.classList.contains('open')) return;
+      const stage=card.querySelector('.stage'); if(stage) stage.remove();
+      card.classList.remove('open');
+    }
+
+    // تفعيل بالتحويم على الديسكتوب وباللمس على الجوال
+    document.querySelectorAll('.card').forEach(card=>{
+      const box=card.querySelector('.card-inn');
+      box.addEventListener('mouseenter', ()=> openCard(card));
+      card.addEventListener('mouseleave', ()=> closeCard(card));
+      box.addEventListener('touchstart', (e)=>{ openCard(card); e.stopPropagation(); }, {passive:true});
+      document.addEventListener('touchstart', (e)=>{ if(!card.contains(e.target)) closeCard(card); }, {passive:true});
+    });
+  </script>
+</body>
+</html>
