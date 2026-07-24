@@ -16,6 +16,9 @@
 [![Instagram](https://img.shields.io/badge/Instagram-%40mashrjbi-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/mashrjbi)
 [![TikTok](https://img.shields.io/badge/TikTok-%40mashrjbi-000000?style=flat-square&logo=tiktok&logoColor=white)](https://www.tiktok.com/@mashrjbi)
 [![X](https://img.shields.io/badge/X-%40mashrjbi-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/mashrjbi)
+[![Threads](https://img.shields.io/badge/Threads-%40mashrjbi-000000?style=flat-square&logo=threads&logoColor=white)](https://www.threads.com/@mashrjbi)
+[![YouTube](https://img.shields.io/badge/YouTube-%40mashrjbi-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@mashrjbi)
+[![Facebook](https://img.shields.io/badge/Facebook-%40mashrjbi-0866FF?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/mashrjbi)
 [![Tech Community](https://img.shields.io/badge/Arabic_Tech_Community-148K%2B-0175C2?style=flat-square&logo=flutter&logoColor=white)](https://www.instagram.com/mashrjbi)
 
 </div>
@@ -220,6 +223,13 @@ Fast Arabic-first experience with observable production behavior
 [![Portfolio](https://img.shields.io/badge/Technovizen-View_Work-02569B?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.technovizen.com)
 [![Email](https://img.shields.io/badge/Email-Discuss_an_Opportunity-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mohamedalshrjabi@gmail.com)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-Start_a_Conversation-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/966568767724)
+
+[![Instagram](https://img.shields.io/badge/Instagram-%40mashrjbi-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/mashrjbi)
+[![TikTok](https://img.shields.io/badge/TikTok-%40mashrjbi-000000?style=flat-square&logo=tiktok&logoColor=white)](https://www.tiktok.com/@mashrjbi)
+[![X](https://img.shields.io/badge/X-%40mashrjbi-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/mashrjbi)
+[![Threads](https://img.shields.io/badge/Threads-%40mashrjbi-000000?style=flat-square&logo=threads&logoColor=white)](https://www.threads.com/@mashrjbi)
+[![YouTube](https://img.shields.io/badge/YouTube-%40mashrjbi-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@mashrjbi)
+[![Facebook](https://img.shields.io/badge/Facebook-%40mashrjbi-0866FF?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/mashrjbi)
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=110&section=footer&color=0:02569B,50:0B1F33,100:020617" alt="Profile footer" />
 
