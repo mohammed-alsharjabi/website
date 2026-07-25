@@ -6,9 +6,9 @@
 
 ### Senior Software Engineer · Lead Flutter Developer · Mobile Architecture Specialist · Founder of Technovizen 🇸🇦
 
-**Riyadh, Saudi Arabia** · Building production mobile products, business platforms, and Arabic-first digital experiences.
+**Riyadh, Saudi Arabia** · Building production mobile products, scalable business systems, and Arabic-first digital experiences.
 
-[![Portfolio](https://img.shields.io/badge/Technovizen-Portfolio-02569B?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.technovizen.com)
+[![Technovizen](https://img.shields.io/badge/Technovizen-Portfolio-02569B?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.technovizen.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Mohammed_Al--Sharjabi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://sa.linkedin.com/in/mashrjbi)
 [![Email](https://img.shields.io/badge/Email-mohamedalshrjabi%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mohamedalshrjabi@gmail.com)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-Professional_Contact-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/966568767724)
@@ -16,18 +16,16 @@
 [![Instagram](https://img.shields.io/badge/Instagram-%40mashrjbi-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/mashrjbi)
 [![TikTok](https://img.shields.io/badge/TikTok-%40mashrjbi-000000?style=flat-square&logo=tiktok&logoColor=white)](https://www.tiktok.com/@mashrjbi)
 [![X](https://img.shields.io/badge/X-%40mashrjbi-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/mashrjbi)
-[![Threads](https://img.shields.io/badge/Threads-%40mashrjbi-000000?style=flat-square&logo=threads&logoColor=white)](https://www.threads.com/@mashrjbi)
-[![YouTube](https://img.shields.io/badge/YouTube-%40mashrjbi-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@mashrjbi)
-[![Facebook](https://img.shields.io/badge/Facebook-%40mashrjbi-0866FF?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/mashrjbi)
-[![Tech Community](https://img.shields.io/badge/Arabic_Tech_Community-148K%2B-0175C2?style=flat-square&logo=flutter&logoColor=white)](https://www.instagram.com/mashrjbi)
+[![Threads](https://img.shields.io/badge/Threads-%40mashrjbi-000000?style=flat-square&logo=threads&logoColor=white)](https://www.threads.net/@mashrjbi)
+[![Community](https://img.shields.io/badge/Arabic_Tech_Community-148K%2B-0175C2?style=flat-square&logo=flutter&logoColor=white)](https://www.instagram.com/mashrjbi)
 
 </div>
 
 ## Executive Profile
 
-Founder of **Technovizen** and a product-focused software engineer with more than three years of hands-on delivery across mobile applications, websites, e-commerce, dashboards, logistics, education, and service platforms. I turn business requirements into maintainable systems using Flutter, Laravel, API integrations, Arabic-first UX, performance engineering, and search visibility.
+Founder of **Technovizen** and a product-focused software engineer with more than three years of hands-on delivery across mobile applications, websites, e-commerce, dashboards, logistics, education, and service platforms.
 
-My work is not limited to writing code. I approach products through architecture, user experience, speed, SEO, analytics, conversion, and long-term maintainability. I also create Arabic technical content for a community of more than **148,000 followers**, connecting real engineering work with business outcomes.
+I combine **Flutter architecture, Laravel backends, API integrations, Arabic-first UX, performance engineering, SEO, analytics, and product thinking** to turn business requirements into maintainable systems that can scale beyond the first release.
 
 ## Proven Impact
 
@@ -58,8 +56,8 @@ My work is not limited to writing code. I approach products through architecture
 ![Hive](https://img.shields.io/badge/Hive-FFC107?style=flat-square&logo=dart&logoColor=0D1117)
 ![Isar](https://img.shields.io/badge/Isar-5A45FF?style=flat-square&logo=dart&logoColor=white)
 
-- Modular feature boundaries
-- Repository and datasource separation
+- Feature-first modular architecture
+- Repository and datasource boundaries
 - Predictable loading, success, failure, empty, offline, and permission states
 - Local-first persistence and resilient startup flows
 
@@ -76,13 +74,14 @@ My work is not limited to writing code. I approach products through architecture
 ![FCM](https://img.shields.io/badge/Push_Notifications-FCM-FFCA28?style=flat-square&logo=firebase&logoColor=0D1117)
 ![Maps](https://img.shields.io/badge/Google_Maps-4285F4?style=flat-square&logo=googlemaps&logoColor=white)
 
-- Cross-platform Android and iOS delivery
+- Android and iOS delivery with Flutter
 - Maps, location, media, secure playback, notifications, and background services
-- Responsive Arabic RTL and English LTR interfaces
+- Arabic RTL and English LTR interfaces
 - Performance-aware networking, caching, and image delivery
 
 </td>
 </tr>
+
 <tr>
 <td valign="top" width="50%">
 
@@ -100,7 +99,7 @@ My work is not limited to writing code. I approach products through architecture
 
 - Authentication, REST integrations, dashboards, and administration systems
 - Laravel-backed mobile and web products
-- Search Console, Analytics, structured data, and production SEO
+- Search Console, Analytics, structured data, and technical SEO
 - Core Web Vitals, PageSpeed, caching, and media optimization
 
 </td>
@@ -146,6 +145,7 @@ My work is not limited to writing code. I approach products through architecture
 
 </td>
 </tr>
+
 <tr>
 <td valign="top" width="50%">
 
@@ -168,7 +168,7 @@ My work is not limited to writing code. I approach products through architecture
 </tr>
 </table>
 
-> Client and commercial repositories remain private. Public case studies document the business problem, architecture, engineering scope, and verified implementation details without exposing proprietary source code.
+> Commercial repositories remain private. Public case studies document the business problem, architecture, engineering scope, and verified implementation details without exposing proprietary source code.
 
 ## Open Engineering Showcase
 
@@ -182,7 +182,7 @@ My work is not limited to writing code. I approach products through architecture
 ## Product & Search Impact
 
 - [Nicebox Saudi](https://nicebox-sa.com) — approximately **203K Google impressions** and **1.33K organic clicks** within a three-month reporting window.
-- [Tafasil Events](https://events-tafasil.com) — production event-services platform with a recorded **100 SEO** score and strong accessibility/best-practice results.
+- [Tafasil Events](https://events-tafasil.com) — production event-services platform with a recorded **100 SEO** score.
 - [Riyadh Flower](https://riyadhflower.com) — commerce and local-service experience focused on discoverability and conversion.
 - [Lams Event](https://lams-event.com) and [Sakhanat Riyadh](https://sakhanat-riyadh.com) — production service websites combining performance, search visibility, and client-managed content.
 
@@ -209,7 +209,7 @@ Reliable API, persistence, state, and platform integrations
 Fast Arabic-first experience with observable production behavior
 ```
 
-- Build systems for maintainability, ownership, and business value—not screenshots alone.
+- Build systems for maintainability, ownership, and business value.
 - Keep networking, persistence, state, and UI responsibilities explicit.
 - Treat Arabic RTL, loading, failure, offline, permissions, and accessibility as core product states.
 - Communicate scope honestly and never present prototypes as completed production platforms.
@@ -220,16 +220,14 @@ Fast Arabic-first experience with observable production behavior
 <div align="center">
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Professional_Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://sa.linkedin.com/in/mashrjbi)
-[![Portfolio](https://img.shields.io/badge/Technovizen-View_Work-02569B?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.technovizen.com)
+[![Technovizen](https://img.shields.io/badge/Technovizen-View_Work-02569B?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.technovizen.com)
 [![Email](https://img.shields.io/badge/Email-Discuss_an_Opportunity-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mohamedalshrjabi@gmail.com)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-Start_a_Conversation-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/966568767724)
 
 [![Instagram](https://img.shields.io/badge/Instagram-%40mashrjbi-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/mashrjbi)
 [![TikTok](https://img.shields.io/badge/TikTok-%40mashrjbi-000000?style=flat-square&logo=tiktok&logoColor=white)](https://www.tiktok.com/@mashrjbi)
 [![X](https://img.shields.io/badge/X-%40mashrjbi-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/mashrjbi)
-[![Threads](https://img.shields.io/badge/Threads-%40mashrjbi-000000?style=flat-square&logo=threads&logoColor=white)](https://www.threads.com/@mashrjbi)
-[![YouTube](https://img.shields.io/badge/YouTube-%40mashrjbi-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@mashrjbi)
-[![Facebook](https://img.shields.io/badge/Facebook-%40mashrjbi-0866FF?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/mashrjbi)
+[![Threads](https://img.shields.io/badge/Threads-%40mashrjbi-000000?style=flat-square&logo=threads&logoColor=white)](https://www.threads.net/@mashrjbi)
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=110&section=footer&color=0:02569B,50:0B1F33,100:020617" alt="Profile footer" />
 
